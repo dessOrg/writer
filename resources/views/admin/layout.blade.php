@@ -11,7 +11,9 @@
   <link rel="stylesheet" href="/adminlte/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <!-- Ionicons -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  
+<!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">
@@ -40,7 +42,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>LaravelAdmin</b>LTE</span>
+      <span class="logo-lg"><b>AdminDashboard</b>LTE</span>
     </a>
 
     <!-- Header Navbar -->
@@ -154,7 +156,7 @@
               <!-- The user image in the navbar-->
               <img src="/adminlte/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Demo User</span>
+              <span class="hidden-xs">{{ Auth::user()->fname }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -162,8 +164,8 @@
                 <img src="/adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Demo User - Web Developer
-                  <small>Member since Nov. 2017</small>
+                  <span>{{Auth::user()->fname}}  - {{ Auth::user()->role }}</span>
+                  <small>Member since {{ Auth::user()->created_at }}</small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -212,7 +214,7 @@
           <img src="/adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Demo User</p>
+          <p>{{ Auth::user()->fname }}</p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>

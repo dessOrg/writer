@@ -14,8 +14,11 @@ class UsersController extends Controller
      */
     public function index()
     {
-       // return "USERS INDEX" ;
-        return view('admin.users.index')->with('users', User::all() ) ;
+        $admins = User::where('role','=','Admin')->get();
+        $clients = User::where('role','=','Client')->get();
+        $writers = User::where('role','=', 'Writer')->get();
+        // return "USERS INDEX" ;
+        return view('admin.users.index')->with('writers',$writers )->with('clients', $clients)->with('admins', $admins) ;
     }
 
     /**
