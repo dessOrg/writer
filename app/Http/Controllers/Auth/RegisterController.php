@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use Jrean\UserVerification\Traits\VerifiesUsers;
+use Jrean\UserVerification\Facades\UserVerification;
+use Illuminate\Http\Request;
+
 class RegisterController extends Controller
 {
     /*
@@ -21,13 +25,14 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+    use VerifiesUsers;
 
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -36,7 +41,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest',['except' => ['getVerification', 'getVerificationError']]);
     }
 
     /**
@@ -48,7 +53,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'fname' => 'required|string|max:255',
+            'lname' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users',
+            'mobile' => 'string|min:10|max:13|',
+            'role' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -63,9 +72,23 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'fname' => $data['fname'],
+            'lname' => $data['lname'],
+            'username' => $data['username'],
+            'mobile' => $data['mobile'],
+            'role' => $data['role'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+ 
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        $user = $this->create($request->all());
+        UserVerification::generate($user);
+        UserVerification::send($user, 'My Custom E-mail Subject');
+        //return back()->withAlert('Register successfully, please verify your email.');
+        return redirect('/login')->with('status', 'We sent you an activation code. Check your email and click on the link to verify.');
     }
 }

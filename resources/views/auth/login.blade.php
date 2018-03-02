@@ -8,7 +8,32 @@
                 <div class="panel-heading">Login</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+@if(Session::has('alert'))
+
+<div class="alert alert-success">
+
+    {{ Session::get('alert') }}
+
+    @php
+
+    Session::forget('alert');
+
+    @endphp
+
+</div>
+
+@endif
+                     @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    @if (session('warning'))
+                        <div class="alert alert-warning">
+                            {{ session('warning') }}
+                        </div>
+                    @endif  
+                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">

@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // ADMIN GROUP
-Route::group([ 'middleware' => 'auth' ], function() {
+Route::group([ 'middleware' => 'auth', 'middleware' => 'isVerified' ], function() {
     // MAIN DASHBOARD
     Route::get('admin', function () {
         return view('admin.dashboard') ;
