@@ -4,43 +4,47 @@
 
 <div class="">
   <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#hs">High School</a></li>
-    <li><a data-toggle="tab" href="#ug">Undergraduate</a></li>
-    <li><a data-toggle="tab" href="#gm">Graduate Masters</a></li>
-    <li><a data-toggle="tab" href="#gd">Graduate Doctorate</a></li>
+    <li class="active"><a data-toggle="tab" href="#writing">Writing</a></li>
+    <li><a data-toggle="tab" href="#rewriting">Rewriting</a></li>
+    <li><a data-toggle="tab" href="#ep">Editing & Proofreading</a></li>
+    <li><a data-toggle="tab" href="#translation">Translation</a></li>
+    <li><a data-toggle="tab" href="#polish">Polishing & Enhancement</a></li>
+    <li><a data-toggle="tab" href="#slide">Power-point Designs(Slides)</a></li>
   </ul>
 
     <div class="tab-content">
- 
-     <div id="hs" class="tab-pane fade in active">
+     
+     <div id="writing" class="tab-pane fade in active">
       <div id="" class="panel panel-default">
         <div class="panel-heading">
-                High School Rates
+                Writing Rates
         </div>
         <div class="panel-body">
             <table class="table table-hover">
                 <thead>
-                    <th>ID</th>
-                    <th></th>
-                    <th>MObile No</th>
-                    <th>Email</th>
-                    <th>isVerified</th>
+                    
+                    <th>Timeline</th>
+                    <th>High School</th>
+                    <th>Undergraduate</th>
+                    <th>Graduate Masters</th>
+                    <th>Graduate Doctorate</th>
+                    
                 </thead>
 
                 <tbody>
-                    @if($clients->count() > 0)
-                        @foreach($clients as $user)
+                    @if($writings->count() > 0)
+                        @foreach($writings as $key)
                                 <tr>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->fname }}</td>
-                                    <td>{{ $user->mobile }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->verified }}
+                                    <td>{{ $key->timeline }}</td>
+                                    <td>{{ $key->hs }}</td>
+                                    <td>{{ $key->ug }}</td>
+                                    <td>{{ $key->gm }}</td>
+                                    <td>{{ $key->gd }}
                                 </tr>
                         @endforeach
                     @else
                         <tr>
-                                <th colspan="5" class="text-center">There are no clients.</th>
+                                <th colspan="5" class="text-center">There are no rates for this category.</th>
                         </tr>
                     @endif
                 </tbody>
@@ -49,35 +53,38 @@
     </div>
    </div>
 
-  <div id="writers" class="tab-pane fade">
-   <div id="" class="panel panel-default">
+
+     <div id="rewriting" class="tab-pane fade">
+      <div id="" class="panel panel-default">
         <div class="panel-heading">
-                Writers
+                Rewriting Rates
         </div>
         <div class="panel-body">
             <table class="table table-hover">
                 <thead>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>MObile No</th>
-                    <th>Email</th>
-                    <th>isVerified</th>
+                    
+                    <th>Timeline</th>
+                    <th>High School</th>
+                    <th>Undergraduate</th>
+                    <th>Graduate Masters</th>
+                    <th>Graduate Doctorate</th>
+                    
                 </thead>
 
                 <tbody>
-                    @if($writers->count() > 0)
-                        @foreach($writers as $user)
+                    @if($rewritings->count() > 0)
+                        @foreach($rewritings as $key)
                                 <tr>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->fname }}</td>
-                                    <td>{{ $user->mobile }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->verified }}
+                                    <td>{{ $user->timeline }}</td>
+                                    <td>{{ $user->hs }}</td>
+                                    <td>{{ $user->ug }}</td>
+                                    <td>{{ $user->gm }}</td>
+                                    <td>{{ $user->gd }}
                                 </tr>
                         @endforeach
                     @else
                         <tr>
-                                <th colspan="5" class="text-center">There are no writers.</th>
+                                <th colspan="5" class="text-center">There are no rates for this category.</th>
                         </tr>
                     @endif
                 </tbody>
@@ -86,35 +93,158 @@
     </div>
    </div>
 
-  <div id="admin" class="tab-pane fade">
-   <div id="" class="panel panel-default">
+
+     <div id="ep" class="tab-pane">
+      <div id="" class="panel panel-default">
         <div class="panel-heading">
-                Admins
+                Editing Rates
         </div>
         <div class="panel-body">
             <table class="table table-hover">
                 <thead>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>MObile No</th>
-                    <th>Email</th>
-                    <th>isVerified</th>
+                    
+                    <th>Timeline</th>
+                    <th>High School</th>
+                    <th>Undergraduate</th>
+                    <th>Graduate Masters</th>
+                    <th>Graduate Doctorate</th>
+                    
                 </thead>
 
                 <tbody>
-                    @if($admins->count() > 0)
-                        @foreach($admins as $user)
+                    @if($edits->count() > 0)
+                        @foreach($edits as $key)
                                 <tr>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->fname }}</td>
-                                    <td>{{ $user->mobile }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->verified }}
+                                    <td>{{ $key->timeline }}</td>
+                                    <td>{{ $key->hs }}</td>
+                                    <td>{{ $key->ug }}</td>
+                                    <td>{{ $key->gm }}</td>
+                                    <td>{{ $key->gd }}
                                 </tr>
                         @endforeach
                     @else
                         <tr>
-                                <th colspan="5" class="text-center">There are no admins.</th>
+                                <th colspan="5" class="text-center">There are no rates for this category.</th>
+                        </tr>
+                    @endif
+                </tbody>
+            </table>
+        </div>
+    </div>
+   </div>
+
+
+     <div id="translation" class="tab-pane fade">
+      <div id="" class="panel panel-default">
+        <div class="panel-heading">
+                Translation Rates
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover">
+                <thead>
+                    
+                    <th>Timeline</th>
+                    <th>High School</th>
+                    <th>Undergraduate</th>
+                    <th>Graduate Masters</th>
+                    <th>Graduate Doctorate</th>
+                    
+                </thead>
+
+                <tbody>
+                    @if($translates->count() > 0)
+                        @foreach($translates as $key)
+                                <tr>
+                                    <td>{{ $key->timeline }}</td>
+                                    <td>{{ $key->hs }}</td>
+                                    <td>{{ $key->ug }}</td>
+                                    <td>{{ $key->gm }}</td>
+                                    <td>{{ $key->gd }}
+                                </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                                <th colspan="5" class="text-center">There are no rates for this category.</th>
+                        </tr>
+                    @endif
+                </tbody>
+            </table>
+        </div>
+    </div>
+   </div>
+
+
+     <div id="polish" class="tab-pane fade ">
+      <div id="" class="panel panel-default">
+        <div class="panel-heading">
+                Polishing Rates
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover">
+                <thead>
+                    
+                    <th>Timeline</th>
+                    <th>High School</th>
+                    <th>Undergraduate</th>
+                    <th>Graduate Masters</th>
+                    <th>Graduate Doctorate</th>
+                    
+                </thead>
+
+                <tbody>
+                    @if($polish->count() > 0)
+                        @foreach($polish as $key)
+                                <tr>
+                                    <td>{{ $key->timeline }}</td>
+                                    <td>{{ $key->hs }}</td>
+                                    <td>{{ $key->ug }}</td>
+                                    <td>{{ $key->gm }}</td>
+                                    <td>{{ $key->gd }}
+                                </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                                <th colspan="5" class="text-center">There are no rates for this category.</th>
+                        </tr>
+                    @endif
+                </tbody>
+            </table>
+        </div>
+    </div>
+   </div>
+
+
+     <div id="slide" class="tab-pane fade ">
+      <div id="" class="panel panel-default">
+        <div class="panel-heading">
+                Power-point Rates
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover">
+                <thead>
+                    
+                    <th>Timeline</th>
+                    <th>High School</th>
+                    <th>Undergraduate</th>
+                    <th>Graduate Masters</th>
+                    <th>Graduate Doctorate</th>
+                    
+                </thead>
+
+                <tbody>
+                    @if($slides->count() > 0)
+                        @foreach($slides as $key)
+                                <tr>
+                                    <td>{{ $key->timeline }}</td>
+                                    <td>{{ $key->hs }}</td>
+                                    <td>{{ $key->ug }}</td>
+                                    <td>{{ $key->gm }}</td>
+                                    <td>{{ $key->gd }}
+                                </tr>
+                        @endforeach
+                    @else
+                        <tr>
+                                <th colspan="5" class="text-center">There are no rates for this category.</th>
                         </tr>
                     @endif
                 </tbody>
