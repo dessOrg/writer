@@ -27,4 +27,11 @@ Route::group([ 'middleware' => 'auth', 'middleware' => 'isVerified', 'middleware
     }) ;
 
     Route::get('admin/users', 'UsersController@index')->name('user.index') ;
+
+    Route::get('admin/rates', 'Admin/RateController@index');
+    Route::get('admin/create', 'Admin/RateController@create');
+    Route::post('admin/store', 'Admin/RateController@store');
+    Route::get('admin/show{id}', 'Admin/RateController@show');
+    Route::get('admin/edit{id}', 'Admin/RateController@edit');
+    Route::post('admin/update{id}', 'Admin/RateController@update');
 });
