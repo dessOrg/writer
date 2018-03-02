@@ -2,7 +2,10 @@
 
 @section('content')
 
-<div class="">
+<div style="margin-bottom:10px;">
+ <span class="pull-right"><a href="{{ url('admin/rates/create')}}"><button class="btn btn-primary">SET RATES</button></a></span>
+</div>
+<div class="" style="padding-top:20px;">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#writing">Writing</a></li>
     <li><a data-toggle="tab" href="#rewriting">Rewriting</a></li>
@@ -35,11 +38,13 @@
                     @if($writings->count() > 0)
                         @foreach($writings as $key)
                                 <tr>
-                                    <td>{{ $key->timeline }}</td>
+                                    <td>{{ $key->timeline }} {{ $key->timeunit }}</td>
                                     <td>{{ $key->hs }}</td>
                                     <td>{{ $key->ug }}</td>
                                     <td>{{ $key->gm }}</td>
-                                    <td>{{ $key->gd }}
+                                    <td>{{ $key->gd }}</td>
+                                    <td><span><a href="{{ url('admin/rates/edit').$key->id }}"><i class="fa fa-edit fa-2x"></i></a><span>
+                                     <span class=""><a href="{{ url('admin/rates/destroy').$key->id }}"><i class="fa fa-remove fa-2x" style="color:red"></i><a></span></td>
                                 </tr>
                         @endforeach
                     @else
@@ -75,12 +80,13 @@
                     @if($rewritings->count() > 0)
                         @foreach($rewritings as $key)
                                 <tr>
-                                    <td>{{ $user->timeline }}</td>
-                                    <td>{{ $user->hs }}</td>
-                                    <td>{{ $user->ug }}</td>
-                                    <td>{{ $user->gm }}</td>
-                                    <td>{{ $user->gd }}
-                                </tr>
+                                    <td>{{ $key->timeline }} {{ $key->timeunit }}</td>
+                                    <td>{{ $key->hs }}</td>
+                                    <td>{{ $key->ug }}</td>
+                                    <td>{{ $key->gm }}</td>
+                                    <td>{{ $key->gd }}</td>
+                                    <td><span><a href="{{ url('admin/rates/edit').$key->id }}"><i class="fa fa-edit fa-2x"></i></a><span>
+                                     <span class=""><a href="{{ url('admin/rates/destroy').$key->id }}"><i class="fa fa-remove fa-2x" style="color:red"></i><a></span></td>                                </tr>
                         @endforeach
                     @else
                         <tr>
@@ -115,11 +121,13 @@
                     @if($edits->count() > 0)
                         @foreach($edits as $key)
                                 <tr>
-                                    <td>{{ $key->timeline }}</td>
+                                    <td>{{ $key->timeline }} {{ $key->timeunit }}</td>
                                     <td>{{ $key->hs }}</td>
                                     <td>{{ $key->ug }}</td>
                                     <td>{{ $key->gm }}</td>
-                                    <td>{{ $key->gd }}
+                                    <td>{{ $key->gd }}</td>
+                                     <td><span><a href="{{ url('admin/rates/edit').$key->id }}"><i class="fa fa-edit fa-2x"></i></a><span>
+                                     <span class=""><a href="{{ url('admin/rates/destroy').$key->id }}"><i class="fa fa-remove fa-2x" style="color:red"></i><a></span></td>
                                 </tr>
                         @endforeach
                     @else
@@ -155,11 +163,13 @@
                     @if($translates->count() > 0)
                         @foreach($translates as $key)
                                 <tr>
-                                    <td>{{ $key->timeline }}</td>
+                                    <td>{{ $key->timeline }} {{ $key->timeunit }}</td>
                                     <td>{{ $key->hs }}</td>
                                     <td>{{ $key->ug }}</td>
                                     <td>{{ $key->gm }}</td>
-                                    <td>{{ $key->gd }}
+                                    <td>{{ $key->gd }}</td>
+                                    <td><span><a href="{{ url('admin/rates/edit').$key->id }}"><i class="fa fa-edit fa-2x"></i></a><span>
+                                     <span class=""><a href="{{ url('admin/rates/destroy').$key->id }}"><i class="fa fa-remove fa-2x" style="color:red"></i><a></span></td>
                                 </tr>
                         @endforeach
                     @else
@@ -195,11 +205,13 @@
                     @if($polish->count() > 0)
                         @foreach($polish as $key)
                                 <tr>
-                                    <td>{{ $key->timeline }}</td>
+                                    <td>{{ $key->timeline }} {{ $key->timeunit }}</td>
                                     <td>{{ $key->hs }}</td>
                                     <td>{{ $key->ug }}</td>
                                     <td>{{ $key->gm }}</td>
-                                    <td>{{ $key->gd }}
+                                    <td>{{ $key->gd }}</td>
+                                    <td><span><a href="{{ url('admin/rates/edit').$key->id }}"><i class="fa fa-edit fa-2x"></i></a><span>
+                                     <span class=""><a href="{{ url('admin/rates/destroy').$key->id }}"><i class="fa fa-remove fa-2x" style="color:red"></i><a></span></td>
                                 </tr>
                         @endforeach
                     @else
@@ -235,11 +247,13 @@
                     @if($slides->count() > 0)
                         @foreach($slides as $key)
                                 <tr>
-                                    <td>{{ $key->timeline }}</td>
+                                    <td>{{ $key->timeline }} {{ $key->timeunit }}</td>
                                     <td>{{ $key->hs }}</td>
                                     <td>{{ $key->ug }}</td>
                                     <td>{{ $key->gm }}</td>
-                                    <td>{{ $key->gd }}
+                                    <td>{{ $key->gd }}</td>
+                                    <td><span><a href="{{ url('admin/rates/edit').$key->id }}"><i class="fa fa-edit fa-2x"></i></a><span>
+                                     <span class=""><a href="{{ url('admin/rates/destroy').$key->id }}"><i class="fa fa-remove fa-2x" style="color:red"></i><a></span></td>
                                 </tr>
                         @endforeach
                     @else

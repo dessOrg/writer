@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // ADMIN GROUP
-Route::group([ 'middleware' => 'auth', 'middleware' => 'isVerified', 'middleware' => 'admin' ], function() {
+Route::group(['middleware' => 'auth', 'middleware' => 'isVerified', 'middleware' => 'admin' ], function() {
     // MAIN DASHBOARD
     Route::get('admin', function () {
         return view('admin.dashboard') ;
@@ -28,10 +28,11 @@ Route::group([ 'middleware' => 'auth', 'middleware' => 'isVerified', 'middleware
 
     Route::get('admin/users', 'UsersController@index')->name('user.index') ;
 
-    Route::get('admin/rates', 'Admin/RateController@index');
-    Route::get('admin/create', 'Admin/RateController@create');
-    Route::post('admin/store', 'Admin/RateController@store');
-    Route::get('admin/show{id}', 'Admin/RateController@show');
-    Route::get('admin/edit{id}', 'Admin/RateController@edit');
-    Route::post('admin/update{id}', 'Admin/RateController@update');
+    Route::get('admin/rates', 'RateController@index');
+    Route::get('admin/rates/create', 'RateController@create');
+    Route::post('admin/rates/store', 'RateController@store');
+    Route::get('admin/rates/show{id}', 'RateController@show');
+    Route::get('admin/rates/edit{id}', 'RateController@edit');
+    Route::post('admin/rates/update{id}', 'RateController@update');
+    Route::get('admin/rates/destroy{id}', 'RateController@destroy');
 });

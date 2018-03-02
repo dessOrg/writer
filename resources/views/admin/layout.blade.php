@@ -29,6 +29,11 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+<style>
+ .nav li {
+    display:table-cell !important;
+}
+</style>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -238,7 +243,7 @@
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="/admin"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li class=""><a href="{{ route('user.index') }}"><i class="fa fa-user"></i> <span>Users</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+        <li><a href="{{ url('admin/rates') }}"><i class="fa fa-link"></i> <span>Rates</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
