@@ -41,4 +41,10 @@ Route::group(['middleware' => 'auth', 'middleware' => 'isVerified', 'middleware'
     Route::get('admin/topics/edit{id}', 'Admin\TopicController@edit');
     Route::post('admin/topics/update{id}', 'Admin\TopicController@update');
     Route::get('admin/topics/destroy{id}', 'Admin\TopicController@destroy');
+
+    Route::get('admin/skills', 'Admin\SkillController@index');
+    Route::post('admin/skills/store', 'Admin\SkillController@store');
+    Route::get('admin/skills/edit{id}', 'Admin\SkillController@edit');
+    Route::post('admin/skills/update{id}', 'Admin\SkillController@update');
+    Route::get('admin/skills/destroy{id}', 'Admin\SkillController@destroy');
 });
