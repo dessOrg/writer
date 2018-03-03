@@ -244,6 +244,7 @@
         <li class="active"><a href="/admin"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li class=""><a href="{{ route('user.index') }}"><i class="fa fa-user"></i> <span>Users</span></a></li>
         <li><a href="{{ url('admin/rates') }}"><i class="fa fa-link"></i> <span>Rates</span></a></li>
+        <li><a href="{{ url('admin/topics') }}"><i class="fa fa-book"></i> <span>Topics</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
