@@ -91,8 +91,8 @@
                             <label for="role" class="col-md-4 control-label">Register AS:</label>
 
                             <div class="col-md-6">
-                               <label class="radio-inline"> <input id="role" type="radio" class="form-control" name="role" value="Client">Client</label>
-                                <label class="radio-inline"><input id="role" type="radio" class="form-control" name="role" value="Writer">Writer</label>
+                               <label class="radio-inline"> <input id="role" type="radio" class="" name="role" value="Client">Client</label>
+                                <label class="radio-inline"><input id="role" type="radio" class="" name="role" value="Writer">Writer</label>
 
                                 @if ($errors->has('role'))
                                     <span class="help-block">

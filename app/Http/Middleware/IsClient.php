@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Middleware;
+use Auth;
 
 use Closure;
-use Session;
 
-class IsVerified
+class IsClient
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,10 @@ class IsVerified
      */
     public function handle($request, Closure $next)
     {
-        if(!auth()->user()->verified && auth()->user()->role != "Client"){
-           Session::flush();
-            return redirect('login')->withAlert('Please verify your email before login.');
-        }
-        return $next($request);
+       if (Auth::user() &&  Auth::user()->role == "Client") {
+            return $next($request);
+       }
+
+       return redirect('/');
     }
 }

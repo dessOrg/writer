@@ -191,10 +191,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{ url('writer/profile') }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                                                         <a href="{{ route('logout') }}"
+                  <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">
                                             Logout
@@ -203,7 +203,7 @@
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
- 
+                  
                 </div>
               </li>
             </ul>
@@ -251,7 +251,7 @@
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="/admin"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li class=""><a href="{{ route('user.index') }}"><i class="fa fa-user"></i> <span>Users</span></a></li>
+        <li class=""><a href="{{ url('writer/profile') }}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
         <li><a href="{{ url('admin/rates') }}"><i class="fa fa-link"></i> <span>Rates</span></a></li>
         <li><a href="{{ url('admin/topics') }}"><i class="fa fa-book"></i> <span>Topics</span></a></li>
         <li><a href="{{ url('admin/skills') }}"><i class="fa fa-certificate"></i> <span>Skills</span></a></li>

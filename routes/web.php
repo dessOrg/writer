@@ -48,3 +48,21 @@ Route::group(['middleware' => 'auth', 'middleware' => 'isVerified', 'middleware'
     Route::post('admin/skills/update{id}', 'Admin\SkillController@update');
     Route::get('admin/skills/destroy{id}', 'Admin\SkillController@destroy');
 });
+// CLIENT GROUP
+Route::group(['middleware' => 'auth', 'middleware' => 'client' ], function() {
+    Route::get('client', function () {
+        return view('client.dashboard') ;
+    }) ;
+
+});
+// WRITER GROUP
+Route::group(['middleware' => 'auth', 'middleware' => 'isVerified', 'middleware' => 'writer' ], function() {
+    Route::get('writer', function () {
+        return view('writer.dashboard') ;
+    }) ;
+
+
+    Route::get('writer/profile', 'Writer\ProfileController@index');
+    Route::get('writer/profile/show{id}', 'Writer\ProfileController@show');
+    
+});

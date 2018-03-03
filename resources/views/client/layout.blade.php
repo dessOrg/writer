@@ -194,7 +194,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                                                         <a href="{{ route('logout') }}"
+                   <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">
                                             Logout
@@ -228,7 +228,7 @@
           <img src="/adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>{{ Auth::user()->fname }}</p>
+          <p>{{ Auth::user()->username }}</p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -250,20 +250,22 @@
       <ul class="sidebar-menu">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="/admin"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li class=""><a href="{{ route('user.index') }}"><i class="fa fa-user"></i> <span>Users</span></a></li>
+        <li class="active"><a href="/client"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li class=""><a href="#"><i class="fa fa-users"></i> <span>Writers Ratings</span></a></li>
         <li><a href="{{ url('admin/rates') }}"><i class="fa fa-link"></i> <span>Rates</span></a></li>
         <li><a href="{{ url('admin/topics') }}"><i class="fa fa-book"></i> <span>Topics</span></a></li>
         <li><a href="{{ url('admin/skills') }}"><i class="fa fa-certificate"></i> <span>Skills</span></a></li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+          <a href="#"><i class="fa fa-shopping-bag"></i> <span>My Orders</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
+            <li><a href="#">Bidding</a></li>
+            <li><a href="#">In Progress</a></li>
+            <li><a href="#">Closed</a></li>
+            <li><a href="#">Cancelled </a></li>
           </ul>
         </li>
       </ul>
