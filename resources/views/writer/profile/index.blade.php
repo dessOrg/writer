@@ -9,43 +9,72 @@
       
        <div class="profile-photo">
         <img src="/adminlte/img/user2-160x160.jpg" class="user-image" alt="User Image">
-         <div style="padding:4px;"><button class="btn btn-default">Update </button> </div>
+         
+        <div> <span class=""><a href="{{ url('/writer/profile/edit').Auth::user()->id }}"><strong><i class="fa fa-pencil"></i>Profile</strong></a></span></div>
        </div>
       
       
        <div class="user-details">
-        <h2>{{ Auth::user()->fname }} {{ Auth::user()->lname }}</h2>
-        <h3>Online Writer</h3>
-        <h4>@<strong>{{ Auth::user()->username }}</strong></h4>
+        <h2 style="margin-bottom:1px;margin-top:1px;">{{ Auth::user()->fname }} {{ Auth::user()->lname }}</h2>
+        <h3 style="margin-bottom:1px;margin-top:1px;">Online Writer</h3>
+        <h4 style="margin-bottom:1px;margin-top:1px;">@<strong>{{ Auth::user()->username }}</strong></h4>
        </div>
 
-<hr>
       
-       <div class="personal-statement">
-         <p>About me</p>
+       <div class="personal-statement" style="border-top:ridge; padding-top:1px;">
+        <div class="col-md-12">
+         <span class="pull-left" style="margin-top:-2px;"><h3>Bio</h3></span>
+         <span class="pull-right"><h3><i class="fa fa-edit"></i></h3></span>
+        </div>
+          @if(is_null($user))
+          <p>Update</p>
+          @else
+          <p>{{ $user->bio }}</p>
+          @endif
        </div>
            
     </div>
 
-    <div class="skill-section text-center" style="margin-top:5px; padding:5px; baorder-style:ridge; border-color:#fff; background-color:#fff;">
+    <div class="skill-section text-center" style="margin-top:5px; padding:5px; border-style:ridge; border-color:#fff; background-color:#fff;">
     <div class="col-md-12">  
-    <div class="col-md-6">
-      <h3 style="text-align:left">Skills </h3>
-     </div>
-     <div class="col-md-6">
-      <span style="margin-top:10px;"><i class="fa fa-plus"></i></span>
-      
-     </div>
+     <span class="pull-left"> <h3 style="text-align:left">Skills </h3> </span>
+     <span class="pull-right" style="margin-top:10px;"><i class="fa fa-plus"></i></span>
+    
     </div>
-<br>
-    <hr>
-      
+
         <div class="skill" style="margin-top:20px;">
          <span style="background-color:gray; padding:3px;">Essay Writer<a href="#"><i class="fa fa-remove" style="background-color:white;"></i></a></span>
         </div>
        </div>
     
-    
+       <div class="portfolio" style="margin-top:5px; padding:5px; border-style:ridge; border-color:#fff;background-color:#fff;">
+        <div class="col-md-12 col-xs-12">
+         <span class="pull-left"><h3>Finished Projects</h3></span>
+        </div>
+
+        <div class="port-cont" style="margin-top:3px;">
+         <div class="">
+
+          <div class="" style="display:inline-block; width:25vw;padding-left:5px;border-right:inset;">
+           <h5><strong>Project Title</strong></h5>
+           <span><i class="fa fa-calendar"></i>Feb,25,2018</span>
+          </div>
+          <div class="" style="display:inline-block">
+           <span><i class="fa fa-star"></i></span>
+           <span><i class="fa fa-star"></i></span>
+           <span><i class="fa fa-star"></i></span>
+           <span><i class="fa fa-star"></i></span>
+           <span><i class="fa fa-star"></i></span>
+          </div>
+          <div style="display:inline-block; padding:5px;">
+           <i class="fa fa-eye"></i>
+          </div>
+
+         </div>
+        </div>
+
+       </div>
+
   </div>
 </div>
 </div>

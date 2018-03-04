@@ -252,9 +252,10 @@
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="/admin"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li class=""><a href="{{ url('writer/profile') }}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
-        <li><a href="{{ url('admin/rates') }}"><i class="fa fa-link"></i> <span>Rates</span></a></li>
-        <li><a href="{{ url('admin/topics') }}"><i class="fa fa-book"></i> <span>Topics</span></a></li>
-        <li><a href="{{ url('admin/skills') }}"><i class="fa fa-certificate"></i> <span>Skills</span></a></li>
+        <li><a href="#"><i class="fa fa-star"></i><span>My Reviews</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>My Bids</span></a></li>
+        <li><a href="#"><i class="fa fa-book"></i> <span>Work In Progress</span></a></li>
+        <li><a href="#"><i class="fa fa-certificate"></i> <span>Finished Projects</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">

@@ -64,5 +64,6 @@ Route::group(['middleware' => 'auth', 'middleware' => 'isVerified', 'middleware'
 
     Route::get('writer/profile', 'Writer\ProfileController@index');
     Route::get('writer/profile/show{id}', 'Writer\ProfileController@show');
-    
+    Route::get('writer/profile/edit{id}', 'Writer\ProfileController@edit');   
+    Route::post('writer/profile/bio', 'Writer\ProfileController@bio'); 
 });
