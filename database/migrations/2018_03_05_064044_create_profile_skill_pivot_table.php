@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProfileSkillTable extends Migration
+class CreateProfileSkillPivotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +12,12 @@ class CreateProfileSkillTable extends Migration
      */
     public function up()
     {
-        Schema::table('profile_skill', function (Blueprint $table) {
-           // $table->increments('id');
+        Schema::create('profile_skill', function (Blueprint $table) {
             $table->integer('profile_id')->unsigned()->index();
             $table->foreign('profile_id')->references('id')->on('profiles')->onDelete('cascade');
             $table->integer('skill_id')->unsigned()->index();
-            $table->foreign('skill_id')->references('id')->on('skills')->onDelete('cascade'); 
+            $table->foreign('skill_id')->references('id')->on('skills')->onDelete('cascade');
+            $table->primary(['profile_id', 'skill_id']);
         });
     }
 
@@ -29,8 +28,6 @@ class CreateProfileSkillTable extends Migration
      */
     public function down()
     {
-        Schema::table('profile_skill', function (Blueprint $table) {
-            $schema::dropIfExists('profile_skill');
-        });
+        Schema::drop('profile_skill');
     }
 }

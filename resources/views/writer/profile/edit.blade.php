@@ -14,7 +14,7 @@
                             {{ session()->get('success') }}
                         </div>
                     @endif
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('admin/profile/update').Auth::user()->id }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('writer/profile/update').Auth::user()->id }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('fname') ? ' has-error' : '' }}">
@@ -54,20 +54,6 @@
                                 @if ($errors->has('username'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">Email</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ Auth::user()->email }}" placeholder="" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -123,14 +109,18 @@
                 </div>
             </div>
 
-            <div class="panel panel-default">
+            <div id="skill" class="panel panel-default">
                 <div class="panel-heading">Update Skills</div>
                 <div class="panel-body">
 
                   <div class="skills-box" style="margin: 5px 80px 5px 80px;padding:10px; border-style:solid;">
-                    <span style="padding:3px;background-color:gray;">Skill 1 <i class="fa fa-remove" style="color:#fff"></i></span>
-                    <span style="padding:3px;background-color:gray;">Skill 2 <i class="fa fa-remove" style="color:#fff"></i></span>
-                    <span style="padding:3px;background-color:gray;">Skill 3 <i class="fa fa-remove" style="color:#fff"></i></span>
+                     @if($profile_skills->count() == 0)
+                        <p>You Have No Skills</p>
+                     @else
+                       @foreach($profile_skills as $key )
+                <span style="padding:3px;background-color:gray;">{{ $key->title }} <a href="{{ url('writer/profile/removeskill'.$key->id) }}"><i class="fa fa-remove" style="color:#fff"></i></a></span>
+                       @endforeach
+                    @endif
                   </div>
                   <div style="padding:5px;">
                       <h4>Select Skills </h4>
@@ -140,30 +130,20 @@
                             {{ session()->get('success') }}
                         </div>
                     @endif
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('admin/profile/update').Auth::user()->id }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('writer/profile/skill').Auth::user()->id }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('bio') ? ' has-error' : '' }}">
                             
                             <div class="col-md-offset-1 col-md-10">
-                              
+                             @foreach($skills as $key)
+                                                    
                              <div>
-                              <input type="checkbox" name="favorite[]" id="south" value="south">
-                              <label for="south">Skill 5</label>
+                              <input type="checkbox" name="profile[]" id="{{$key->id }}" value="{{ $key->id }}">
+                              <label for="{{ $key->id }}">{{ $key->title }}</label>
                              </div>
-                             <div>
-                              <input type="checkbox" name="favorite[]" id="north" value="north">
-                              <label for="north">Skill 6</label>
-                             </div>
-                             <div>
-                               <input type="checkbox" name="favorite[]" id="east" value="east">
-                               <label for="east">Skill 7</label>
-                             </div>
-                                @if ($errors->has('bio'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('bio') }}</strong>
-                                    </span>
-                                @endif
+                        
+                             @endforeach
                             </div>
                         </div>
 

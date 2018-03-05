@@ -24,7 +24,7 @@
        <div class="personal-statement" style="border-top:ridge; padding-top:1px;">
         <div class="col-md-12">
          <span class="pull-left" style="margin-top:-2px;"><h3>Bio</h3></span>
-         <span class="pull-right"><h3><i class="fa fa-edit"></i></h3></span>
+         <span class="pull-right"><h3><a href="{{ url('/writer/profile/edit').Auth::user()->id }}"><i class="fa fa-edit"></i></a></h3></span>
         </div>
           @if(is_null($user))
           <p>Update</p>
@@ -38,12 +38,18 @@
     <div class="skill-section text-center" style="margin-top:5px; padding:5px; border-style:ridge; border-color:#fff; background-color:#fff;">
     <div class="col-md-12">  
      <span class="pull-left"> <h3 style="text-align:left">Skills </h3> </span>
-     <span class="pull-right" style="margin-top:10px;"><i class="fa fa-plus"></i></span>
+     <span class="pull-right" style="margin-top:10px;"><a href="{{ url('/writer/profile/edit').Auth::user()->id }}"><i class="fa fa-plus"></i></a></span>
     
     </div>
 
-        <div class="skill" style="margin-top:20px;">
-         <span style="background-color:gray; padding:3px;">Essay Writer<a href="#"><i class="fa fa-remove" style="background-color:white;"></i></a></span>
+        <div class="skill" style="margin-top:20px;text-align:left;">
+         @if($skills->count() > 0)
+           @foreach($skills as $key)
+         <span style="background-color:#757575;color:#fff; padding:5px;">{{ $key->title }}</span>
+           @endforeach
+         @else
+           <p>Update your skills</p>
+         @endif
         </div>
        </div>
     
