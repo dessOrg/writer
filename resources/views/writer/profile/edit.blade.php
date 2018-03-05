@@ -114,7 +114,7 @@
                 <div class="panel-body">
 
                   <div class="skills-box" style="margin: 5px 80px 5px 80px;padding:10px; border-style:solid;">
-                     @if($profile_skills->count() == 0)
+                     @if($profile_skills == "0")
                         <p>You Have No Skills</p>
                      @else
                        @foreach($profile_skills as $key )

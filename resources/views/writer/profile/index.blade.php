@@ -43,7 +43,7 @@
     </div>
 
         <div class="skill" style="margin-top:20px;text-align:left;">
-         @if($skills->count() > 0)
+         @if($skills != "0")
            @foreach($skills as $key)
          <span style="background-color:#757575;color:#fff; padding:5px;">{{ $key->title }}</span>
            @endforeach

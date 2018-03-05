@@ -20,8 +20,13 @@ class ProfileController extends Controller
     public function index()
     {
         $user = User::find(Auth::user()->id)->profile;
+        if(is_null($user)){
+            $skills = '0';
+          return view('writer/profile/index', compact('user','skills'));
+        }else{
         $skills = Profile::find($user->id)->skills()->get();
         return view('writer/profile/index', compact('user','skills'));
+        }
     }
 
     /**
@@ -66,8 +71,13 @@ class ProfileController extends Controller
     {
         $user = User::find($id)->profile;
         $skills = Skill::get();
+        if(is_null($user)){
+            $profile_skills = "0";
+            return view('writer/profile/edit', compact('user','skills','profile_skills'));
+        }else{
         $profile_skills = Profile::find($user->id)->skills()->get();
         return view('writer/profile/edit', compact('user','skills','profile_skills'));
+        }
     }
 
     /**
@@ -119,11 +129,11 @@ class ProfileController extends Controller
         $id = Auth::user()->id;
         $user = User::find($id)->profile;
         if(is_null($user)){
-          $profile = new Profile;
-          $profile->bio = $request->get('bio');
-          $profile->image = '0';
-          $profile->user_id = Auth::user()->id;
-          $profile->save();
+            $profile = new Profile;
+            $profile->bio = $request->get('bio');
+            $profile->image = '0';
+            $profile->user_id = Auth::user()->id;
+            $profile->save();
 
         }else{
           $prof = User::find($id)->profile;
@@ -147,7 +157,8 @@ class ProfileController extends Controller
 
         $user = User::find($id)->profile;
         if(is_null($user)){
-           $prof = new Profile;
+            $prof = new Profile;
+            $prof->user_id = Auth::user()->id;
            $prof->image = '0';
            $prof->bio   = 'Update Your Bio';
            $prof->save();
