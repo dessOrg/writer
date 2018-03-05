@@ -47,7 +47,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>AdminDashboard</b>LTE</span>
+      <span class="logo-lg"><b>ClientDashboard</b></span>
     </a>
 
     <!-- Header Navbar -->
@@ -83,7 +83,7 @@
                         <small><i class="fa fa-clock-o"></i> 5 mins</small>
                       </h4>
                       <!-- The message -->
-                      <p>Why not buy a new awesome theme?</p>
+                      <p>Why not reuest an order right now?</p>
                     </a>
                   </li>
                   <!-- end message -->
@@ -109,7 +109,7 @@
                 <ul class="menu">
                   <li><!-- start notification -->
                     <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                      <i class="fa fa-users text-aqua"></i> 5 new bids today
                     </a>
                   </li>
                   <!-- end notification -->
@@ -279,12 +279,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Page Header
-        <small>Optional description</small>
+    
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
+        <li class="active">Home</li>
       </ol>
     </section>
 
@@ -303,10 +302,10 @@
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-      Laravel AdminLTS Starter
+      Online Writing 
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2018 <a href="#">desshub</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
