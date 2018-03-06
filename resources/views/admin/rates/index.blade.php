@@ -27,10 +27,8 @@
                 <thead>
                     
                     <th>Timeline</th>
-                    <th>High School</th>
-                    <th>Undergraduate</th>
-                    <th>Graduate Masters</th>
-                    <th>Graduate Doctorate</th>
+                    <th>Academic Level</th>
+                    <th>Rates</th>
                     
                 </thead>
 
@@ -38,11 +36,10 @@
                     @if($writings->count() > 0)
                         @foreach($writings as $key)
                                 <tr>
-                                    <td>{{ $key->timeline }} {{ $key->timeunit }}</td>
-                                    <td>{{ $key->hs }}</td>
-                                    <td>{{ $key->ug }}</td>
-                                    <td>{{ $key->gm }}</td>
-                                    <td>{{ $key->gd }}</td>
+                                    <td>{{ $key->timeline }}</td>
+                                    <td>{{ $key->level }}</td>
+                                    <td>{{ $key->rates }}</td>
+                                    
                                     <td><span><a href="{{ url('admin/rates/edit').$key->id }}"><i class="fa fa-edit fa-2x"></i></a><span>
                                      <span class=""><a href="{{ url('admin/rates/destroy').$key->id }}"><i class="fa fa-remove fa-2x" style="color:red"></i><a></span></td>
                                 </tr>
@@ -69,10 +66,8 @@
                 <thead>
                     
                     <th>Timeline</th>
-                    <th>High School</th>
-                    <th>Undergraduate</th>
-                    <th>Graduate Masters</th>
-                    <th>Graduate Doctorate</th>
+                    <th>Academic Level</th>
+                    <th>Rates</th>
                     
                 </thead>
 
@@ -80,11 +75,10 @@
                     @if($rewritings->count() > 0)
                         @foreach($rewritings as $key)
                                 <tr>
-                                    <td>{{ $key->timeline }} {{ $key->timeunit }}</td>
-                                    <td>{{ $key->hs }}</td>
-                                    <td>{{ $key->ug }}</td>
-                                    <td>{{ $key->gm }}</td>
-                                    <td>{{ $key->gd }}</td>
+                                    <td>{{ $key->timeline }}</td>
+                                    <td>{{ $key->level }}</td>
+                                    <td>{{ $key->rates }}</td>
+                            
                                     <td><span><a href="{{ url('admin/rates/edit').$key->id }}"><i class="fa fa-edit fa-2x"></i></a><span>
                                      <span class=""><a href="{{ url('admin/rates/destroy').$key->id }}"><i class="fa fa-remove fa-2x" style="color:red"></i><a></span></td>                                </tr>
                         @endforeach
@@ -110,10 +104,8 @@
                 <thead>
                     
                     <th>Timeline</th>
-                    <th>High School</th>
-                    <th>Undergraduate</th>
-                    <th>Graduate Masters</th>
-                    <th>Graduate Doctorate</th>
+                    <th>Academic Level</th>
+                    <th>Rates</th>
                     
                 </thead>
 
@@ -121,11 +113,10 @@
                     @if($edits->count() > 0)
                         @foreach($edits as $key)
                                 <tr>
-                                    <td>{{ $key->timeline }} {{ $key->timeunit }}</td>
-                                    <td>{{ $key->hs }}</td>
-                                    <td>{{ $key->ug }}</td>
-                                    <td>{{ $key->gm }}</td>
-                                    <td>{{ $key->gd }}</td>
+                                    <td>{{ $key->timeline }} </td>
+                                    <td>{{ $key->level }}</td>
+                                    <td>{{ $key->rates }}</td>
+                                    
                                      <td><span><a href="{{ url('admin/rates/edit').$key->id }}"><i class="fa fa-edit fa-2x"></i></a><span>
                                      <span class=""><a href="{{ url('admin/rates/destroy').$key->id }}"><i class="fa fa-remove fa-2x" style="color:red"></i><a></span></td>
                                 </tr>
@@ -152,22 +143,19 @@
                 <thead>
                     
                     <th>Timeline</th>
-                    <th>High School</th>
-                    <th>Undergraduate</th>
-                    <th>Graduate Masters</th>
-                    <th>Graduate Doctorate</th>
-                    
+                    <th>Academic Level</th>
+                    <th>Rates</th>
+    
                 </thead>
 
                 <tbody>
                     @if($translates->count() > 0)
                         @foreach($translates as $key)
                                 <tr>
-                                    <td>{{ $key->timeline }} {{ $key->timeunit }}</td>
-                                    <td>{{ $key->hs }}</td>
-                                    <td>{{ $key->ug }}</td>
-                                    <td>{{ $key->gm }}</td>
-                                    <td>{{ $key->gd }}</td>
+                                    <td>{{ $key->timeline }} </td>
+                                    <td>{{ $key->level }}</td>
+                                    <td>{{ $key->rates }}</td>
+                                    
                                     <td><span><a href="{{ url('admin/rates/edit').$key->id }}"><i class="fa fa-edit fa-2x"></i></a><span>
                                      <span class=""><a href="{{ url('admin/rates/destroy').$key->id }}"><i class="fa fa-remove fa-2x" style="color:red"></i><a></span></td>
                                 </tr>
@@ -194,22 +182,19 @@
                 <thead>
                     
                     <th>Timeline</th>
-                    <th>High School</th>
-                    <th>Undergraduate</th>
-                    <th>Graduate Masters</th>
-                    <th>Graduate Doctorate</th>
-                    
+                    <th>Academic Level</th>
+                    <th>Rates</th>
+            
                 </thead>
 
                 <tbody>
                     @if($polish->count() > 0)
                         @foreach($polish as $key)
                                 <tr>
-                                    <td>{{ $key->timeline }} {{ $key->timeunit }}</td>
-                                    <td>{{ $key->hs }}</td>
-                                    <td>{{ $key->ug }}</td>
-                                    <td>{{ $key->gm }}</td>
-                                    <td>{{ $key->gd }}</td>
+                                    <td>{{ $key->timeline }} </td>
+                                    <td>{{ $key->level }}</td>
+                                    <td>{{ $key->rates }}</td>
+                                    
                                     <td><span><a href="{{ url('admin/rates/edit').$key->id }}"><i class="fa fa-edit fa-2x"></i></a><span>
                                      <span class=""><a href="{{ url('admin/rates/destroy').$key->id }}"><i class="fa fa-remove fa-2x" style="color:red"></i><a></span></td>
                                 </tr>
@@ -236,10 +221,8 @@
                 <thead>
                     
                     <th>Timeline</th>
-                    <th>High School</th>
-                    <th>Undergraduate</th>
-                    <th>Graduate Masters</th>
-                    <th>Graduate Doctorate</th>
+                    <th>Academic Level</th>
+                    <th>Rates</th>
                     
                 </thead>
 
@@ -247,11 +230,10 @@
                     @if($slides->count() > 0)
                         @foreach($slides as $key)
                                 <tr>
-                                    <td>{{ $key->timeline }} {{ $key->timeunit }}</td>
-                                    <td>{{ $key->hs }}</td>
-                                    <td>{{ $key->ug }}</td>
-                                    <td>{{ $key->gm }}</td>
-                                    <td>{{ $key->gd }}</td>
+                                    <td>{{ $key->timeline }}</td>
+                                    <td>{{ $key->level }}</td>
+                                    <td>{{ $key->rates }}</td>
+                                    
                                     <td><span><a href="{{ url('admin/rates/edit').$key->id }}"><i class="fa fa-edit fa-2x"></i></a><span>
                                      <span class=""><a href="{{ url('admin/rates/destroy').$key->id }}"><i class="fa fa-remove fa-2x" style="color:red"></i><a></span></td>
                                 </tr>

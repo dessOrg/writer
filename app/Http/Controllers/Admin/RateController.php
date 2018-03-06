@@ -47,12 +47,10 @@ class RateController extends Controller
     {
        $validator = Validator::make($request->all(), [
             'category' => 'required|max:255',
-            'unittime' => 'required',
             'timeline' => 'required',
-            'ug'       => 'required',
-            'gm'       => 'required',
-            'gd'       => 'required',
-            'hs'       => 'required',
+            'level'       => 'required',
+            'rates'       => 'required',
+            
          ]);
 
         if ($validator->fails()) {
@@ -62,17 +60,14 @@ class RateController extends Controller
         }
         
         $timeline = (int)Input::get('timeline');
-        $unittime = Input::get('unittime');
-        $timeinhr = $this->findhours($timeline, $unittime);
+       // $unittime = Input::get('unittime');
+       // $timeinhr = $this->findhours($timeline, $unittime);
          $rate = new Rate([
                'category' => $request->get('category'),
-               'timeunit' => $unittime,
                'timeline' => $timeline,
-               'ug'       => $request->get('ug'),
-               'gm'       => $request->get('gm'),
-               'gd'       => $request->get('gd'),
-               'hs'       => $request->get('hs'),
-               'timeinhr' => $timeinhr,
+               'level'       => $request->get('level'),
+               'rates'       => $request->get('rates'),
+               
                ]);
 
                $rate->save();
@@ -134,12 +129,10 @@ class RateController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'category' => 'required|max:255',
-            'unittime' => 'required',
             'timeline' => 'required',
-            'ug'       => 'required',
-            'gm'       => 'required',
-            'gd'       => 'required',
-            'hs'       => 'required',
+            'level'       => 'required',
+            'rates'       => 'required',
+            
          ]);
 
         if ($validator->fails()) {
@@ -149,21 +142,18 @@ class RateController extends Controller
         }
         
         $timeline = (int)Input::get('timeline');
-        $unittime = Input::get('unittime');
-        $timeinhr = $this->findhours($timeline, $unittime);
+       // $unittime = Input::get('unittime');
+       // $timeinhr = $this->findhours($timeline, $unittime);
 
         $rate_obj = new Rate;
         $rate_obj->id = $id;
         $rate = Rate::find($rate_obj->id);
          $rate->update([
                'category' => $request->get('category'),
-               'timeunit' => $unittime,
                'timeline' => $timeline,
-               'ug'       => $request->get('ug'),
-               'gm'       => $request->get('gm'),
-               'gd'       => $request->get('gd'),
-               'hs'       => $request->get('hs'),
-               'timeinhr' => $timeinhr,
+               'rates'       => $request->get('rates'),
+               'level'       => $request->get('level'),
+               
                ]);
 
                

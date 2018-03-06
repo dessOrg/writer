@@ -33,23 +33,20 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('unittime') ? ' has-error' : '' }}">
-                            <label for="unittime" class="col-md-4 control-label">Timeline Unit:</label>
+                        <div class="form-group{{ $errors->has('level') ? ' has-error' : '' }}">
+                            <label for="level" class="col-md-4 control-label">Level</label>
 
                             <div class="col-md-6">
-                               <label class="radio-inline"> <input id="unittime" type="radio" class="" name="unittime" value="Hours" {{ $rate->timeunit == 'Hours' ? 'checked' : '' }}>Hours</label>
-                               <label class="radio-inline"><input id="unittime" type="radio" class="" name="unittime" value="Days" {{ $rate->timeunit == 'Days' ? 'checked' : '' }}>Days</label>
-                               <label class="radio-inline"><input id="unittime" type="radio" class="" name="unittime" value="Weeks" {{ $rate->timeunit == 'Weeks' ? 'checked' : '' }}>Weeks</label>
-                               <label class="radio-inline"><input id="unittime" type="radio" class="" name="unittime" value="Months" {{ $rate->timeunit == 'Months' ? 'checked' : '' }}>Months</label>
- 
-                                @if ($errors->has('unittime'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('unittime') }}</strong>
-                                    </span>
-                                    @endif
-                           </div>
+                                <select id="level" class="form-control" name="level" required autofocus>
+                                  <option value="{{ $rate->level }}">{{ $rate->level }}</option>
+                                  <option value="hs"> High School</option>
+                                  <option value="ug">Undergraduate</option>
+                                  <option value="gm">Graduate Master</option>
+                                  <option value="gd">Graduate Doctorate</option>
+                                
+                                 </select>
+                            </div>
                         </div>
-
 
                        <div class="form-group{{ $errors->has('timeline') ? ' has-error' : '' }}">
                             <label for="timeline" class="col-md-4 control-label">Timeline</label>
@@ -57,76 +54,41 @@
                             <div class="col-md-6">
                                 <select id="" class="form-control" name="timeline" required autofocus>
                                   <option value="{{ $rate->timeline }}">{{ $rate->timeline }}</option>
-                                  <option value="1">1</option>
-                                  <option value="2">2</option>
-                                  <option value="3">3</option>
-                                  <option value="4">4</option>
-                                  <option value="5">5</option>
-                                  <option value="6">6</option>
-                                  <option value="7">7</option>
-                                  <option value="8">8</option>
-                                  <option value="9">9</option>
-                                  <option value="10">10</option>
+                                  <option value="2 Hours">2 Hours</option>
+                                  <option value="6 Hours">6 Hours</option>
+                                  <option value="12 Hours">12 Hours</option>
+                                  <option value="1 Day">1 Day</option>
+                                  <option value="2 Days">2 Days</option>
+                                  <option value="3 Days">3 Days</option>
+                                  <option value="4 Days">4 Days</option>
+                                  <option value="5 Days">5 Days</option>
+                                  <option value="6 Days">6 Days</option>
+                                  <option value="7 Days">7 Days</option>
+                                  <option value="8 Days">8 Days</option>
+                                  <option value="9 Days">9 Days</option>
+                                  <option value="10 Days">10 Days</option>
+                                  <option value="2 Weeks">2 Weeks</option>
+                                  <option value="1 Month">1 Month</option>
+                                  <option value="2 Months">2 Months</option>
 
                                  </select>
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('hs') ? ' has-error' : '' }}">
-                            <label for="hs" class="col-md-4 control-label">High School</label>
+                        <div class="form-group{{ $errors->has('rates') ? ' has-error' : '' }}">
+                            <label for="rates" class="col-md-4 control-label">Rates</label>
 
                             <div class="col-md-6">
-                                <input id="hs" type="text" class="form-control" name="hs" value="{{ $rate->hs }}" placeholder="Rates in $(USD)" required autofocus>
+                                <input id="rates" type="text" class="form-control" name="rates" value="{{ $rate->rates }}" placeholder="Rates in $(USD)" required autofocus>
 
-                                @if ($errors->has('hs'))
+                                @if ($errors->has('rates'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('hs') }}</strong>
+                                        <strong>{{ $errors->first('rate') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                         <div class="form-group{{ $errors->has('ug') ? ' has-error' : '' }}">
-                            <label for="ug" class="col-md-4 control-label">Undergraduate Degree</label>
-
-                            <div class="col-md-6">
-                                <input id="ug" type="text" class="form-control" name="ug" value="{{ $rate->ug }}" placeholder="Rates in $(USD)" required autofocus>
-
-                                @if ($errors->has('ug'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('ug') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                       <div class="form-group{{ $errors->has('gm') ? ' has-error' : '' }}">
-                            <label for="gm" class="col-md-4 control-label">Graduate Masters</label>
-
-                            <div class="col-md-6">
-                                <input id="gm" type="text" class="form-control" name="gm" value="{{ $rate->gm }}" placeholder="Rates in $(USD)" required>
-
-                                @if ($errors->has('gm'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('gm') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('gd') ? ' has-error' : '' }}">
-                            <label for="gd" class="col-md-4 control-label">Graduate Doctorate</label>
-
-                            <div class="col-md-6">
-                                <input id="gd" type="text" class="form-control" name="gd" value="{{ $rate->gd }}" placeholder="Rates in $(USD)">
-
-                                @if ($errors->has('gd'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('gd') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

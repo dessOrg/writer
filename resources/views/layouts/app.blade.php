@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -76,5 +76,46 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+<!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JavaScript -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.1/js/bootstrap.min.js"></script>
+
+    <!-- toastr notifications -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <!-- icheck checkboxes -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
+
+    <!-- Delay table load until everything else is loaded -->
+<script>
+$(document).ready(function() {
+    $('.calc').click(function (e) {
+        e.preventDefault();
+        $('#def').hide();
+        var category = $('#category').val();
+        var level = $('#level').val();
+        var timeline = $('#timeline').val();
+        var pages = $('#pages').val();
+       console.log(pages); 
+        $.ajax({
+            dataType: 'json',
+            type: "POST",
+            url: '/',
+            data: {_token: '{{ csrf_token() }}',category: category, level: level,timeline: timeline,pages: pages},
+            success: function( response ) {
+               $("#ajaxResponse").html(response);
+                
+                console.log(response);
+            },
+            error: function() {
+                console.log("erro");
+            }
+        });
+    });
+});
+</script>
+
 </body>
 </html>

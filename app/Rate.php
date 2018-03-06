@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rate extends Model
 {
-    protected $fillable= ['category', 'hs', 'ug', 'gm', 'gd', 'timeline', 'timeunit', 'timeinhr'];
+    protected $fillable= ['category', 'level', 'rates', 'timeline'];
 }

@@ -16,13 +16,9 @@ class CreateRatesTable extends Migration
         Schema::create('rates', function (Blueprint $table) {
             $table->increments('id');
             $table->string('category');
-            $table->string('hs');
-            $table->string('ug');
-            $table->string('gm');
-            $table->string('gd');
-            $table->integer('timeline');
-            $table->string('timeunit');
-            $table->integer('timeinhr'); 
+            $table->string('level');
+            $table->string('rates');
+            $table->integer('timeline'); 
             $table->timestamps();
         });
     }
