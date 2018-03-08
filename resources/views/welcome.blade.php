@@ -11,7 +11,7 @@
              <div class="col-md-6 col-xs-12">
                 <div class="calculator">
                   <form class="form-horizontal" role="form" action="{{ url('/') }}" method="POST" >
-  {{ csrf_field() }}
+
                      
 
 <div class="form-group">
@@ -80,13 +80,37 @@
                          </div>
                          
                        </div>
-
+                       <div id="form-group">
+                         <div class="col-md-offset-3 col-md-2">
+                        <!-- <span id="def" class="btn btn-warning">$0.00</span> -->
+                         <!-- <input id="cost" class="form-control" style="width:80px;" type="text" placeholder="$0.00" disabled> -->
+                         <span id="ajaxResponse" class="">$0.00</span> 
+                        <!-- <span id="sendform" class="btn btn-default">Proceed</span> -->
+                        </div>
+                       </div>
+                 
                     </form>
-                       <div id="">
+               </div>
 
-                         <span id="def" class="btn btn-warning">$0.00</span> 
-                         <span id="ajaxResponse" class="btn btn-warning"></span></div>
-                </div>
+                 <form class="form-horizontal" action="{{ url('/sendform') }}" method="POST" >
+                   {{ csrf_field() }}
+                    
+                   <div id="form-group">
+                    <input class="form-control" type="hidden" id="rate_id" name="rate_id">
+                    <input class="form-control" type="hidden" id="total" name="cost">
+                    <input class="form-control" type="hidden" id="page" name="pages">    
+                  </div>
+                   <div class="form-group">
+                     <div class="col-md-offset-3 col-md-4">
+                        <button id="sendform" class="btn btn-warning" style="margin:10px;" type="submit">Proceed</button>
+                     </div>
+                   </div>
+ 
+                 </form>
+
+               <div class="test">
+ 
+               </div>
              </div>
            </div>
        </div>

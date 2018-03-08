@@ -252,7 +252,7 @@
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="/client"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li class=""><a href="#"><i class="fa fa-users"></i> <span>Writers Ratings</span></a></li>
-        <li><a href="{{ url('admin/rates') }}"><i class="fa fa-link"></i> <span>Rates</span></a></li>
+        <li><a href="{{ url('client/project/create') }}"><i class="fa fa-link"></i> <span>Project</span></a></li>
         <li><a href="{{ url('admin/topics') }}"><i class="fa fa-book"></i> <span>Topics</span></a></li>
         <li><a href="{{ url('admin/skills') }}"><i class="fa fa-certificate"></i> <span>Skills</span></a></li>
         <li class="treeview">
@@ -395,6 +395,7 @@
 <script src="/adminlte/bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/adminlte/js/app.min.js"></script>
+<script src="/adminlte/js/custom.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

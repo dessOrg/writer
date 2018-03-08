@@ -59,7 +59,7 @@ class RateController extends Controller
                         ->withInput();
         }
         
-        $timeline = (int)Input::get('timeline');
+        $timeline = Input::get('timeline');
        // $unittime = Input::get('unittime');
        // $timeinhr = $this->findhours($timeline, $unittime);
          $rate = new Rate([
@@ -141,7 +141,7 @@ class RateController extends Controller
                         ->withInput();
         }
         
-        $timeline = (int)Input::get('timeline');
+        $timeline = Input::get('timeline');
        // $unittime = Input::get('unittime');
        // $timeinhr = $this->findhours($timeline, $unittime);
 

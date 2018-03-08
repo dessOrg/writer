@@ -88,12 +88,13 @@
     <!-- icheck checkboxes -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 
+
     <!-- Delay table load until everything else is loaded -->
 <script>
 $(document).ready(function() {
     $('.calc').click(function (e) {
         e.preventDefault();
-        $('#def').hide();
+//        $('#def').hide();
         var category = $('#category').val();
         var level = $('#level').val();
         var timeline = $('#timeline').val();
@@ -105,8 +106,10 @@ $(document).ready(function() {
             url: '/',
             data: {_token: '{{ csrf_token() }}',category: category, level: level,timeline: timeline,pages: pages},
             success: function( response ) {
-               $("#ajaxResponse").html(response);
-                
+               $("#ajaxResponse").html('$,'+ response.cost +'.00');
+               $("#total").val(response.cost);
+               $("#page").val(response.pages);
+               $("#rate_id").val(response.rate_id); 
                 console.log(response);
             },
             error: function() {
@@ -114,6 +117,32 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('#sendform').click(function (e) {
+        e.preventDefault();
+//        $('#def').hide();
+        var pages = $('#page').val();
+        var cost = $('#total').val();
+        var rate_id = $('#rate_id').val();
+    
+       console.log(pages); 
+        $.ajax({
+            dataType: 'json',
+            type: "POST",
+            url: '/sendform',
+            data: {_token: '{{ csrf_token() }}',pages: pages, cost: cost,rate_id: rate_id},
+            success: function( response ) {
+              // $("#ajaxResponse").html('$,'+ response +'.00');
+                location.href = 'client/project/create'+response;      
+                console.log(response);
+            },
+            error: function() {
+                console.log("erro");
+            }
+        });
+    });
+
+
 });
 </script>
 

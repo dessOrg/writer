@@ -89,6 +89,10 @@ class RegisterController extends Controller
         UserVerification::generate($user);
         UserVerification::send($user, 'My Custom E-mail Subject');
         //return back()->withAlert('Register successfully, please verify your email.');
+        if($user->role == "Client"){
+            return redirect()->intended('/home');
+        }else{
         return redirect('/login')->with('status', 'We sent you an activation code. Check your email and click on the link to verify.');
+        }
     }
 }

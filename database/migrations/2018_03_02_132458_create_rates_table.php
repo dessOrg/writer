@@ -18,7 +18,7 @@ class CreateRatesTable extends Migration
             $table->string('category');
             $table->string('level');
             $table->string('rates');
-            $table->integer('timeline'); 
+            $table->string('timeline'); 
             $table->timestamps();
         });
     }

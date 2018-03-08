@@ -27,10 +27,10 @@ class HomeController extends Controller
         if(Auth::user()->role == "Admin"){
             return redirect('admin');
         }elseif(Auth::user()->role == "Client"){
-            return redirect('client');
+            return redirect()->intended('client');
         }elseif(Auth::user()->role == "Writer"){
 
-            return redirect('writer');
+            return redirect()->intended('writer');
         }else{
 
             return redirect('/');

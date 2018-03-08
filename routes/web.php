@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::post('/', 'WelcomeController@index');
+Route::post('/sendform', 'WelcomeController@store');
+Route::get('/form/{id}', function ($id) {
+     return redirect('client/project/create{id}');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -53,6 +58,9 @@ Route::group(['middleware' => 'auth', 'middleware' => 'client' ], function() {
     Route::get('client', function () {
         return view('client.dashboard') ;
     }) ;
+
+    Route::get('client/project/create{id}', 'Client\ProjectController@create');
+    Route::post('/sendcalc', 'Client\ProjectController@store');
 
 });
 // WRITER GROUP

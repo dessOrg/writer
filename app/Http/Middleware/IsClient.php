@@ -20,6 +20,6 @@ class IsClient
             return $next($request);
        }
 
-       return redirect('/');
+       return redirect()->guest('/login');
     }
 }

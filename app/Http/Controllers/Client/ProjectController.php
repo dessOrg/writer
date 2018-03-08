@@ -1,31 +1,72 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
-use App\Rate;
+use App\User;
 use App\Project;
+use App\Rate;
+use App\Skill;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Auth;
 
-class WelcomeController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-       $category = $request->category;
-       $level = $request->level;
-       $timeline = $request->timeline;
-       $pages = $request->pages;
+        //
+    }
 
-       $rates = Rate::where('category','=',$category)->where('level','=',$level)->where('timeline','=',$timeline)->get();
-       $resp = $this->getrates($rates, $pages);
-       $rate_id = $this->getid($rates);
-       return response()->json(['cost' => $resp, 'pages' => $pages, 'rate_id' => $rate_id]);
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create($id)
+   {
+        $project = Project::find($id);
+        return view('client/projects/create', compact('project'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'pages' => 'required|max:255',
+            'cost' => 'required|max:255',
+            'rate_id' => 'required|max:255',
+     ]);
+
+    if ($validator->fails()) {
+        return redirect('/d')
+                    ->withErrors($validator)
+                    ->withInput();
+    }
+   
+       $rate_id = $request->get('rate_id');
+       $pages = $request->get('pages');
+       $cost = $request->get('cost');
+
+       $project = new Project;
+       $project->user_id = Auth::user()->id;
+       $project->rate_id = $rate_id;
+       $project->cost =  $cost;
+       $project->pages = $pages;
+       $project->save();
+
+       return redirect('client/project/create'.$project->id);
  
+       //
     }
 
     public function getrates($rates, $pages)
@@ -37,46 +78,13 @@ class WelcomeController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $project = new Project;
-        $project->pages = $request->pages;
-        $project->rate_id = $request->rate_id;
-        $project->cost = $request->cost;
-        $project->user_id = "0";
-        $project->title = "0";
-        $project->topic = "0";
-        $project->description = "0";
-        $project->document = "0";
-        $project->video = "0";
-        $project->dateline = "0";
-        $project->save();
-
-        return response()->json($project->id);
-    }
-
     public function getid($rates)
     {
        foreach($rates as $key){
           return $key->id;
        }
     }
+
 
     /**
      * Display the specified resource.
