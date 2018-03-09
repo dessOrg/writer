@@ -9,13 +9,15 @@
                <h1>ONLINE WRITING PLATFORM</h2>
              </div>
              <div class="col-md-6 col-xs-12">
-                <div class="calculator">
+                <div class="calculator" style="background-color:#fff;padding:10px;">
+
+                  <div style=""> <h3>Calculate</h3></div>
                   <form class="form-horizontal" role="form" action="{{ url('/') }}" method="POST" >
 
                      
 
 <div class="form-group">
-                                                <div class="col-md-10">
+                                                <div class="col-md-12">
 
                                 <select id="category" class="form-control calc" name="category" required autofocus>
                                  
@@ -31,7 +33,7 @@
                       </div>
                       <div class="form-group">
 
-                          <div class="col-md-10">
+                          <div class="col-md-12">
                                 <select id="level" class="form-control calc" name="level" required autofocus>
                                   <option value="High School">High School</option>
                                   <option value="Undergraduate">Undergraduate</option>
@@ -42,7 +44,7 @@
                         </div> 
                         <div class="form-group">
                             
-                             <div class="col-md-10">
+                             <div class="col-md-12">
                                 <select id="timeline" class="form-control calc" name="timeline" required autofocus>
                                  
                                   <option value="2 Hours">2 Hours</option>
@@ -59,7 +61,7 @@
 
                         <div class="form-group">
                          
-                         <div class="col-md-10">
+                         <div class="col-md-12">
                          <!-- <input type="text" class="form-control calc" name="pages"> -->
                             <select id="pages" class="form-control calc" name="pages">
                              <option value="1">1 Page</option>
@@ -75,7 +77,7 @@
                          
                        </div>
                        <div id="form-group">
-                         <div class="col-md-offset-3 col-md-2">
+                         <div class="col-md-offset-4 col-md-2">
                         <!-- <span id="def" class="btn btn-warning">$0.00</span> -->
                          <!-- <input id="cost" class="form-control" style="width:80px;" type="text" placeholder="$0.00" disabled> -->
                          <span id="ajaxResponse" class="">$0.00</span> 
@@ -84,7 +86,7 @@
                        </div>
                  
                     </form>
-               </div>
+               
 
                  <form class="form-horizontal" action="{{ url('/sendform') }}" method="POST" >
                    {{ csrf_field() }}
@@ -106,6 +108,7 @@
  
                </div>
              </div>
+            </div>
            </div>
        </div>
     </div>
