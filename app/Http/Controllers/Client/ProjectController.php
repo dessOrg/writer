@@ -6,6 +6,7 @@ use App\User;
 use App\Project;
 use App\Rate;
 use App\Skill;
+use App\Topic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -29,8 +30,9 @@ class ProjectController extends Controller
      */
     public function create($id)
    {
-        $project = Project::find($id);
-        return view('client/projects/create', compact('project'));
+       $topics = Topic::get();
+       $project = Project::find($id);
+        return view('client/projects/create', compact('project','topics'));
     }
 
     /**
@@ -115,10 +117,27 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $project_obj = new Project;
+        $project_obj->id = $request->project_id;
+        $project = Project::find($project_obj->id);
+        $project->update(['title' => $request->title, 'topic' => $request->topic, 'description' => $request->description, 'user_id' => Auth::user()->id]);
+
+        return response()->json($project);
     }
+
+    public function finnal(Request $request)
+    {
+        $project = new Project;
+        $project->id = $request->project_id;
+      
+        $project->video = $request->video;
+     
+        $project->save();
+        return response()->json($project);
+    }
+
 
     /**
      * Remove the specified resource from storage.

@@ -80,9 +80,16 @@
                                     Login
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                               <span>
+                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     Forgot Your Password?
+                                 </a>
+                               </span>
+                               <span>
+                                <a class="btn btn-link" href="{{ route('register') }}">
+                                    Have No Account
                                 </a>
+                               </span>
                             </div>
                         </div>
                     </form>

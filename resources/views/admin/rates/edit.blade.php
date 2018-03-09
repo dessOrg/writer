@@ -25,10 +25,10 @@
                                   <option value="{{ $rate->category }}">{{ $rate->category }}</option>
                                   <option value="Writing">Writing</option>
                                   <option value="Rewriting">Rewriting</option>
-                                  <option value="Editing">Editing $ Proofreading</option>
-                                  <option value="Translating">Translation</option>
-                                  <option value="Polishing">Polishing & Enhancement</option>
-                                  <option value="Powerpoint">Power-Point Designs(Slides)</option>
+                                  <option value="Editing $ Proofreadig">Editing $ Proofreading</option>
+                                  <option value="Translation">Translation</option>
+                                  <option value="Polishing & Enhancement">Polishing & Enhancement</option>
+                                  <option value="Power-Point Designs">Power-Point Designs(Slides)</option>
                                  </select>
                             </div>
                         </div>
@@ -39,10 +39,10 @@
                             <div class="col-md-6">
                                 <select id="level" class="form-control" name="level" required autofocus>
                                   <option value="{{ $rate->level }}">{{ $rate->level }}</option>
-                                  <option value="hs"> High School</option>
-                                  <option value="ug">Undergraduate</option>
-                                  <option value="gm">Graduate Master</option>
-                                  <option value="gd">Graduate Doctorate</option>
+                                  <option value="High School"> High School</option>
+                                  <option value="Undergraduate">Undergraduate</option>
+                                  <option value="Graduate Masters">Graduate Masters</option>
+                                  <option value="Graduate Doctorate">Graduate Doctorate</option>
                                 
                                  </select>
                             </div>

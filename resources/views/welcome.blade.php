@@ -33,10 +33,10 @@
 
                           <div class="col-sm-10">
                                 <select id="level" class="form-control calc" name="level" required autofocus>
-                                  <option value="hs">High School</option>
-                                  <option value="ug">Undergraduate</option>
-                                  <option value="gm">Masters</option>
-                                  <option value="gd">Phd's</option>
+                                  <option value="High School">High School</option>
+                                  <option value="Undergraduate">Undergraduate</option>
+                                  <option value="Graduate Masters">Masters</option>
+                                  <option value="Graduate Doctorate">Phd's</option>
                                 </select> 
                           </div>
                         </div> 
@@ -47,20 +47,10 @@
                                  
                                   <option value="2 Hours">2 Hours</option>
                                   <option value="6 Hours">6 Hours</option>
-                                  <option value="12 Hours">12 Hours</option>
+                                
                                   <option value="1 Day">1 Day</option>
                                   <option value="2 Days">2 Days</option>
-                                  <option value="3 Days">3 Days</option>
-                                  <option value="4 Days">4 Days</option>
-                                  <option value="5 Days">5 Days</option>
-                                  <option value="6 Days">6 Days</option>
-                                  <option value="7 Days">7 Days</option>
-                                  <option value="8 Days">8 Days</option>
-                                  <option value="9 Days">9 Days</option>
-                                  <option value="10 Days">10 Days</option>
-                                  <option value="2 Weeks">2 Weeks</option>
-                                  <option value="1 Month">1 Month</option>
-                                  <option value="2 Months">2 Months</option>
+                                
 
                                  </select>
                             </div>

@@ -17,12 +17,12 @@ class RateController extends Controller
      */
     public function index()
     {
-        $writings = Rate::where('category', '=', 'writing')->get();
-        $rewritings = Rate::where('category', '=', 'rewriting')->get();
-          $edits = Rate::where('category', '=', 'editing')->get();
-        $translates = Rate::where('category', '=', 'translating')->get();
-        $polish = Rate::where('category', '=', 'polishing')->get();
-        $slides = Rate::where('category', '=', 'powerpoint')->get();
+        $writings = Rate::where('category', '=', 'Writing')->get();
+        $rewritings = Rate::where('category', '=', 'Rewriting')->get();
+          $edits = Rate::where('category', '=', 'Editing & Proofreading')->get();
+        $translates = Rate::where('category', '=', 'Translation')->get();
+        $polish = Rate::where('category', '=', 'Polishing & Enhancement')->get();
+        $slides = Rate::where('category', '=', 'Power-Point Designs')->get();
         
         return view('admin/rates/index', compact('writings','rewritings','edits','translates','polish','slides'));
     }

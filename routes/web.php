@@ -61,7 +61,8 @@ Route::group(['middleware' => 'auth', 'middleware' => 'client' ], function() {
 
     Route::get('client/project/create{id}', 'Client\ProjectController@create');
     Route::post('/sendcalc', 'Client\ProjectController@store');
-
+    Route::post('/client/project/middle', 'Client\ProjectController@update');
+    Route::post('/client/project/finnal', 'Client\ProjectController@finnal');
 });
 // WRITER GROUP
 Route::group(['middleware' => 'auth', 'middleware' => 'isVerified', 'middleware' => 'writer' ], function() {
