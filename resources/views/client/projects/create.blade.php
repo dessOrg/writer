@@ -213,7 +213,9 @@
                 </div>
                 <div class="panel-footer text-center">
                   <span style="margin:4px;"><a href="#" class="next"><button class="btn-warning">Prev<i class="fa fa-arrow"></i></button></a></span>
-                <!--  <span style="margin:4px;"><a href="#" class="form3"><button class="btn btn-warning">Next<i class="fa fa-arrow"></i></button></a></span>-->
+                  <span style="margin:4px;"><a href="#" ><button class="btn btn-default">Preview</button></a></span>
+                  <span style="margin:4px;"><a href="3"><button class="btn btn-success">Order</button></a></span>
+                 <!--  <span style="margin:4px;"><a href="#" class="form3"><button class="btn btn-warning">Next<i class="fa fa-arrow"></i></button></a></span>-->
                 
                 </div>
               </div>
