@@ -58,16 +58,20 @@
 
 
                         <div class="form-group">
-                         
-                         <div class="col-sm-10">
-                           <select id="pages" class="form-control calc" name="pages">
+                         <label class="col-md-2 form-label">Pages</label>
+                         <div class="col-sm-4">
+                          <input type="text" class="form-control calc" name="pages">
+                        <!--    <select id="pages" class="form-control calc" name="pages">
                              <option value="1">1 Page</option>
                              <option value="2">2 Pages</option>
                              <option value="3">3 Pages</option>
                              <option value="4">4 Pages</option>
                              <option value="5">5 Pages</option>
-                           </select>
+                           </select>-->
                          </div>
+                         <div class="col-md-3">
+                          <span>275 words Per Page</span>
+                         </di>
                          
                        </div>
                        <div id="form-group">
