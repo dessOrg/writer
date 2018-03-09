@@ -430,8 +430,8 @@ $(document).ready(function() {
                $("#topic").val(response.topic);
                $("#description").val(response.description); 
                $("#video").val(response.video);
-                console.log(response);
-            },
+               console.log(response);
+                          },
             error: function() {
                 console.log("erro");
             }
@@ -453,7 +453,7 @@ $(document).ready(function() {
             url: '/client/project/finnal',
             data: {_token: '{{ csrf_token() }}',video: video,project_id: project_id},
             success: function( response ) {
-               
+            
                $("#title").val(response.title);
                $("#topic").val(response.topic);
                $("#description").val(response.description); 
@@ -466,6 +466,47 @@ $(document).ready(function() {
         });
     });
 
+
+$("#docupload").click(function(e) {
+    e.preventDefault();
+    var extension = $('#document').val().split('.').pop().toLowerCase();
+    console.log(extension);
+    if ($.inArray(extension, ['csv', 'xls', 'pdf', 'xlsx']) == -1) {
+         console.log('Error here');
+        $('#errormessage').html('Please Select Valid File... ');
+    } else {
+
+        var file_data = $('#document').prop('files')[0];
+        var project_id = $('#project_id_f').val();
+
+        var form_data = new FormData();
+        form_data.append('_token', '{{ csrf_token() }}');
+        form_data.append('file', file_data);
+        form_data.append('project_id', project_id);
+
+        $.ajax({
+            url: '/client/project/docupload', // point to server-side PHP script
+            data: form_data,
+            type: 'POST',
+            contentType: false, // The content type used when sending data to the server.
+            cache: false, // To unable request pages to be cached
+            processData: false,
+            success: function(response) {
+ 
+               $("#title").val(response.title);
+               $("#topic").val(response.topic);
+               $("#description").val(response.description); 
+               $("#video").val(response.video);
+                console.log(response.document );
+               $("#docpreview").append(response.document);
+
+            },
+           error: function(response) {
+                console.log("Error:", response);
+            }
+        });
+    }
+});
 
 
 

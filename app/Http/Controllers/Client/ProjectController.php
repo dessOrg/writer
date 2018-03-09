@@ -140,6 +140,27 @@ class ProjectController extends Controller
     }
 
 
+
+    public function docupload(Request $request)
+    {
+      
+      $extension = $request->file('file');
+      $extension = $request->file('file')->getClientOriginalExtension(); // getting excel extension
+      $dir = 'public/uploads/';
+      $filename = uniqid().'_'.time().'_'.date('Ymd').'.'.$extension;
+      $pat =  $request->file('file')->move($dir, $filename);
+     // $pat = $dir + $filename;
+
+         $project_obj = new Project;
+         $project_obj->id = $request->project_id;
+      
+         $project = Project::find($project_obj->id);
+     
+         $project->update(['document' => $pat, 'user_id' => Auth::user()->id]);
+        return response()->json($project);
+    }
+
+
     /**
      * Remove the specified resource from storage.
      *

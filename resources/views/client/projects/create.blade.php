@@ -172,7 +172,7 @@
             </div>
            </div>
 
-    <div class="row final">
+     <div class="row final">
         <div class="col-md-8 col-md-offset-2">
          <div class="panel panel-default">
             <div class="panel-heading">Step 3</div>
@@ -183,7 +183,7 @@
                             {{ session()->get('success') }}
                         </div>
                     @endif
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('client/project/finnal') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('client/project/docupload') }}">
                         {{ csrf_field() }}
 
                      
@@ -191,17 +191,34 @@
                             <label for="document" class="col-md-2 control-label">Document File</label>
 
                             <div class="col-md-8">
-                                <input id="document" type="file" class="form-control" name="document" value="{{ $project->document }}" >
+                                <input id="document" type="file" class="form-control" name="document" >
  <input id="project_id_f" type="hidden" class="form-control" name="project_id_f" value="{{ $project->id }}">
+                                
                             </div>
                          </div>
-               
+                         
+                        <div id="docpreview"></div>
+                        <div class="form-group">
+                             <div class="col-md-offset-5 col-md-2 ">
+                                <button id="docupload" class="btn btn-primary">
+                                    Upload
+                                </button>
+                            </div>
+                         
+                        </div>  
+
+                      </form>
+
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('client/project/finnal') }}">
+                        {{ csrf_field() }}
+
+
                          <div class="form-group">
                               <label for="video" class="col-md-2 control-label" >Link To Video</label>
 
                               <div class="col-md-8">
                                  <input id="video" type="text" class="form-control" name="video" value="{{$project->video }}" >
-
+                                 
                                 @if ($errors->has('video'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('video') }}</strong>
@@ -223,7 +240,7 @@
                 </div>
                 <div class="panel-footer text-center">
                   <span style="margin:4px;"><a href="#" class="next"><button class="btn-warning">Prev<i class="fa fa-arrow"></i></button></a></span>
-                  <span style="margin:4px;"><a href="#" ><button class="btn btn-default">Preview</button></a></span>
+                  <span style="margin:4px;"><a href="#" class="preview"><button class="btn btn-default" data-toggle="modal" data-target="#projectpreview" >Preview</button></a></span>
                   <span style="margin:4px;"><a href="3"><button class="btn btn-success">Order</button></a></span>
                  <!--  <span style="margin:4px;"><a href="#" class="form3"><button class="btn btn-warning">Next<i class="fa fa-arrow"></i></button></a></span>-->
                 
@@ -235,6 +252,45 @@
             </div>
         </div>
 
+   <div class="row view">
+        <div class="col-md-8 col-md-offset-2">
+         <div class="panel panel-default">
+            <div class="panel-heading">Order Preview</div>
+                <div class="panel-body">
+
+                 <div style="">
+                   <h3><strong>Title: </strong>{{ $project->title }}</h3>
+                   <h3><strong>Topic: </strong>{{ $project->topic }}</h3>
+                   <h3><strong>Category: </strong>{{ $project->rate->category }}</h3>
+                   <h3><strong>Level: </strong>{{ $project->rate->level }}</h3>
+                   <h3><strong>Timeline: </strong>{{ $project->rate->timeline }}</h3>
+                   <h3><strong>Cost: </strong>$.{{ $project->cost }}</h3>
+                    
+                 </div>
+                   <hr>
+                 <div style="">
+                   <span ><h3><strong>Description: </strong></span>
+                   <span><p>{{ $project->description }}</p>
+                 </div>                   
+                  <hr>
+                 <div style="">
+                   
+                 </div>
+                
+                </div>
+                <div class="panel-footer text-center">
+                  <span style="margin:4px;"><a href="#" class="next"><button class="btn-warning">Prev<i class="fa fa-arrow"></i></button></a></span>
+                  <span style="margin:4px;"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#projectpreview" >Preview</button></span>
+                  <span style="margin:4px;"><a href="3"><button class="btn btn-success">Order</button></a></span>
+                 <!--  <span style="margin:4px;"><a href="#" class="form3"><button class="btn btn-warning">Next<i class="fa fa-arrow"></i></button></a></span>-->
+                
+                </div>
+              </div>
+
+
+
+            </div>
+        </div>
 
     </div>
 </div>

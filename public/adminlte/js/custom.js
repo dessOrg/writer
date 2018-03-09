@@ -2,10 +2,10 @@
 $(function ()
 {
 
-  $(".form2, .final").hide();
+  $(".form2, .final, .view").hide();
 
-  $(".next, .prev, .last").bind("click", function () {
-    $(".form1, .form2, .final").hide();
+  $(".next, .prev, .last, .preview").bind("click", function () {
+    $(".form1, .form2, .final, .view").hide();
 
     if ($(this).attr("class") == "prev")
     {
@@ -15,10 +15,14 @@ $(function ()
     {
       $(".form2").show();
     }
-    else 
+    else if ($(this).attr("class") == "last")
     {
       $(".final").show();
     }
+    else if ($(this).attr("class") == "preview")
+    {
+      $(".view").show();
+      }
   });
 
 });
