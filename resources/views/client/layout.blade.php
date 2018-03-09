@@ -34,6 +34,14 @@
  .nav li {
     display:table-cell !important;
 }
+.required label {
+    font-weight: bold;
+}
+.required label:after {
+    color: #e32;
+    content: ' *';
+    display:inline;
+}
 </style>
 </head>
 
@@ -398,6 +406,72 @@
 <script src="/adminlte/js/app.min.js"></script>
 <script src="/adminlte/js/custom.js"></script>
 
+    <!-- Delay table load until everything else is loaded -->
+<script>
+$(document).ready(function() {
+    $('#projectmiddle').click(function (e) {
+        e.preventDefault();
+//        $('#def').hide();
+        var title = $('#title').val();
+        var topic = $('#topic').val();
+        var description = $('#description').val();
+        var project_id = $('#project_id_m').val();
+//        var video = $('#video').val();
+        console.log(project_id);
+        
+        $.ajax({
+            dataType: 'json',
+            type: "POST",
+            url: '/client/project/middle',
+            data: {_token: '{{ csrf_token() }}',project_id: project_id,title: title, topic: topic, description: description},
+            success: function( response ) {
+               
+               $("#title").val(response.title);
+               $("#topic").val(response.topic);
+               $("#description").val(response.description); 
+               $("#video").val(response.video);
+                console.log(response);
+            },
+            error: function() {
+                console.log("erro");
+            }
+        });
+    });
+
+
+    $('#projectfinnal').click(function (e) {
+        e.preventDefault();
+//        $('#def').hide();
+        
+        var video = $('#video').val();
+        var project_id = $('#project_id_f').val();
+        console.log(project_id);
+        
+        $.ajax({
+            dataType: 'json',
+            type: "POST",
+            url: '/client/project/finnal',
+            data: {_token: '{{ csrf_token() }}',video: video,project_id: project_id},
+            success: function( response ) {
+               
+               $("#title").val(response.title);
+               $("#topic").val(response.topic);
+               $("#description").val(response.description); 
+               $("#video").val(response.video);
+                console.log(response);
+            },
+            error: function() {
+                console.log("erro");
+            }
+        });
+    });
+
+
+
+
+});
+
+</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the

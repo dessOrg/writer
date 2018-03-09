@@ -113,8 +113,8 @@
                             <label for="title" class="col-md-2 control-label">Project Title</label>
 
                             <div class="col-md-8">
-                                <input id="title" type="text" class="form-control" name="title"  placeholder="Title">
-  <input id="project_id_m" type="hidden" class="form-control" name="project_id" value="{{ $project->id }}">
+                                <input id="title" type="text" class="form-control" name="title" value="{{ $project->title }}" placeholder="Title">
+  <input id="project_id_m" type="hidden" class="form-control" name="project_id_m" value="{{ $project->id }}">
                                 @if ($errors->has('title'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('title') }}</strong>
@@ -127,8 +127,12 @@
                               <label for="topic" class="col-md-2 control-label" >Topic</label>
 
                               <div class="col-md-8">
-                                <select id="topic" class="form-control" name="select" required>
-                                  <option value="">Select Topic</option>
+                                <select id="topic" class="form-control" name="topic" required>
+                                  @if($project->topic == "0")
+                                    <option value="0">Select Topic</option>
+                                  @else
+                                  <option value="{{ $project->topic }}">{{ $project->topic }}</option>
+                                  @endif
                                   @foreach($topics as $key)
                                     <option value="{{ $key->title }}">{{$key->title }}</option>
                                   @endforeach
@@ -137,9 +141,15 @@
                           </div>
 
                           <div class="form-group">
-                             <label for="description" class="col-md-2 control-label" >Description</label>
+                             <label for="description" class="col-md-2 control-label .required" >Description</label>
                             <div class="col-md-8">
-                              <textarea id="description" type="text" rows="5" class="form-control"></textarea>
+                              <textarea id="description" type="text" rows="5" class="form-control">
+                                @if($project->description == "0")
+                                   Describe Your Order in details.
+                                @else
+                                   {{ $project->description }}
+                                @endif
+                             </textarea>
                             </div>
                            </div>
 
@@ -182,7 +192,7 @@
 
                             <div class="col-md-8">
                                 <input id="document" type="file" class="form-control" name="document" value="{{ $project->document }}" >
- <input id="project_id_f" type="hidden" class="form-control" name="project_id" value="{{ $project->id }}">
+ <input id="project_id_f" type="hidden" class="form-control" name="project_id_f" value="{{ $project->id }}">
                             </div>
                          </div>
                

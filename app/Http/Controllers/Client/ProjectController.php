@@ -122,6 +122,7 @@ class ProjectController extends Controller
         $project_obj = new Project;
         $project_obj->id = $request->project_id;
         $project = Project::find($project_obj->id);
+
         $project->update(['title' => $request->title, 'topic' => $request->topic, 'description' => $request->description, 'user_id' => Auth::user()->id]);
 
         return response()->json($project);
@@ -129,12 +130,12 @@ class ProjectController extends Controller
 
     public function finnal(Request $request)
     {
-        $project = new Project;
-        $project->id = $request->project_id;
+         $project_obj = new Project;
+         $project_obj->id = $request->project_id;
       
-        $project->video = $request->video;
+         $project = Project::find($project_obj->id);
      
-        $project->save();
+         $project->update(['video' => $request->video, 'user_id' => Auth::user()->id]);
         return response()->json($project);
     }
 
