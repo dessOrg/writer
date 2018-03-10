@@ -271,10 +271,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Bidding</a></li>
-            <li><a href="#">In Progress</a></li>
-            <li><a href="#">Closed</a></li>
-            <li><a href="#">Cancelled </a></li>
+            <li><a href="{{ url('client/order/Unpublished') }}">Unpublished</a></li>
+            <li><a href="{{ url('client/order/Bidding') }}">Bidding</a></li>
+            <li><a href="{{ url('client/order/Inprogress') }}">In Progress</a></li>
+            <li><a href="{{ url('client/order/Closed') }}">Closed</a></li>
+            <li><a href="{{ url('client/order/Cancelled') }}">Cancelled </a></li>
           </ul>
         </li>
       </ul>
