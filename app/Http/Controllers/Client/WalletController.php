@@ -1,40 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
-use App\Rate;
-use App\Project;
 use Illuminate\Http\Request;
-use Auth;
+use App\Http\Controllers\Controller;
 
-class WelcomeController extends Controller
+class WalletController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-       $category = $request->category;
-       $level = $request->level;
-       $timeline = $request->timeline;
-       $pages = $request->pages;
 
-       $rates = Rate::where('category','=',$category)->where('level','=',$level)->where('timeline','=',$timeline)->get();
-       $resp = $this->getrates($rates, $pages);
-       $rate_id = $this->getid($rates);
-       return response()->json(['cost' => $resp, 'pages' => $pages, 'rate_id' => $rate_id]);
- 
-    }
-
-    public function getrates($rates, $pages)
-    {
-       foreach($rates as $key){
-         $results = (int)$key->rates * (int)$pages;
-         return $results;
-       }
-
+        return view('client/wallet/index');
     }
 
     /**
@@ -55,27 +36,7 @@ class WelcomeController extends Controller
      */
     public function store(Request $request)
     {
-        $project = new Project;
-        $project->pages = $request->pages;
-        $project->rate_id = $request->rate_id;
-        $project->cost = $request->cost;
-        $project->user_id = "0";
-        $project->title = "0";
-        $project->topic = "0";
-        $project->description = "0";
-        $project->file = "0";
-        $project->video = "0";
-        $project->dateline = "0";
-        $project->save();
-
-        return response()->json($project->id);
-    }
-
-    public function getid($rates)
-    {
-       foreach($rates as $key){
-          return $key->id;
-       }
+        //
     }
 
     /**

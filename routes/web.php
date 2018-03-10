@@ -64,6 +64,9 @@ Route::group(['middleware' => 'auth', 'middleware' => 'client' ], function() {
     Route::post('/client/project/middle', 'Client\ProjectController@update');
     Route::post('/client/project/finnal', 'Client\ProjectController@finnal');
     Route::post('/client/project/docupload', 'Client\ProjectController@docupload');
+    Route::get('/client/project/order{id}',  'Client\ProjectController@loadorder');
+
+    Route::get('/client/wallet/show', 'Client\WalletController@index');
 });
 // WRITER GROUP
 Route::group(['middleware' => 'auth', 'middleware' => 'isVerified', 'middleware' => 'writer' ], function() {

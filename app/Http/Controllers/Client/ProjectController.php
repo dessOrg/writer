@@ -148,16 +148,23 @@ class ProjectController extends Controller
       $extension = $request->file('file')->getClientOriginalExtension(); // getting excel extension
       $dir = 'public/uploads/';
       $filename = uniqid().'_'.time().'_'.date('Ymd').'.'.$extension;
-      $pat =  $request->file('file')->move($dir, $filename);
-     // $pat = $dir + $filename;
+       $request->file('file')->move($dir, $filename);
+     $pat = $dir.$filename;
 
          $project_obj = new Project;
          $project_obj->id = $request->project_id;
       
          $project = Project::find($project_obj->id);
      
-         $project->update(['document' => $pat, 'user_id' => Auth::user()->id]);
+         $project->update(['file' => $pat, 'user_id' => Auth::user()->id]);
         return response()->json($project);
+    }
+
+
+    public function loadorder($id)
+    {
+      $project = Project::find($id);
+      return view('client/projects/order', compact('project'));
     }
 
 

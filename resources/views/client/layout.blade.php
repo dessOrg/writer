@@ -471,7 +471,7 @@ $("#docupload").click(function(e) {
     e.preventDefault();
     var extension = $('#document').val().split('.').pop().toLowerCase();
     console.log(extension);
-    if ($.inArray(extension, ['csv', 'xls', 'pdf', 'xlsx']) == -1) {
+    if ($.inArray(extension, ['csv', 'xls', 'pdf', 'jpg', 'jpeg', 'png', 'xlsx']) == -1) {
          console.log('Error here');
         $('#errormessage').html('Please Select Valid File... ');
     } else {
@@ -497,8 +497,8 @@ $("#docupload").click(function(e) {
                $("#topic").val(response.topic);
                $("#description").val(response.description); 
                $("#video").val(response.video);
-                console.log(response.document );
-               $("#docpreview").append(response.document);
+                console.log(response.file );
+               $("#docpreview").html("<a href='/"+response.file+"' target="+"'_blank'>View Doc</a>");
 
             },
            error: function(response) {

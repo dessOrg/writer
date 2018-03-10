@@ -22,8 +22,9 @@ class CreateProjectsTable extends Migration
             $table->string('pages');
             $table->string('cost');
             $table->string('description')->nullable;
-            $table->string('document')->nullable();
+            $table->string('file')->nullable();
             $table->string('video')->nullable();
+            $table->string('status')->default('Unpublished');
             $table->string('dateline')->nullable();
             $table->timestamps();
         });
