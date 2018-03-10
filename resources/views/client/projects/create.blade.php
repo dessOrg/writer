@@ -281,7 +281,7 @@
                 <div class="panel-footer text-center">
                   <span style="margin:4px;"><a href="#" class="next"><button class="btn-warning">Prev<i class="fa fa-arrow"></i></button></a></span>
                   <span style="margin:4px;"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#projectpreview" >Preview</button></span>
-                  <span style="margin:4px;"><a href="{{ url('client/project/order'.$project->id) }}"><button class="btn btn-success">Order</button></a></span>
+                  <span style="margin:4px;"><a href="{{ url('client/wallet/show'.$project->id) }}"><button class="btn btn-success">Order</button></a></span>
                  <!--  <span style="margin:4px;"><a href="#" class="form3"><button class="btn btn-warning">Next<i class="fa fa-arrow"></i></button></a></span>-->
                 
                 </div>

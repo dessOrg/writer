@@ -43,8 +43,8 @@
               <label for="amount" class="col-md-2 control-label">Amount ($)</label>
 
               <div class="col-md-4">
-                <input id="amount" type="number" class="form-control" name="amount" value="" placeholder="Amount in USD($)" >
-                
+                <input id="amount" type="number" class="form-control" name="amount" value="{{ $project->cost }}" placeholder="Amount in USD($)" >
+               <input name="project_id" type="hidden" class="form-control" > 
                                 @if ($errors->has('amount'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('amount') }}</strong>

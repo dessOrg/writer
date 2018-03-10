@@ -18,4 +18,9 @@ class Project extends Model
     {
       return $this->belongsTo('App\Rate');
     }
+
+    public function invoice ()
+    {
+      return $this->hasOne('App\Invoice');
+    }
 }

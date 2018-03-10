@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\User;
+use App\Project;
+use App\Invoice;
+use App\Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use PayPal\Rest\ApiContext;
@@ -18,6 +22,7 @@ use PayPal\Api\PaymentExecution;
 use PayPal\Auth\OAuthTokenCredential;
 use Validator;
 use Session;
+use Auth;
 
 class WalletController extends Controller
 {
@@ -37,10 +42,11 @@ class WalletController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-
-        return view('client/wallet/index');
+        
+        $project = Project::find($id);
+        return view('client/wallet/index', compact('project'));
     }
 
     /**
@@ -64,18 +70,21 @@ class WalletController extends Controller
         $validator = Validator::make($request->all(), [
         'amount' => 'required|numeric'
     ]);
-  
+       
+        $id = "1";
+
     if ($validator->fails()) {
-      return redirect('client/wallet/show')
+      return redirect('client/wallet/show'.$id)
         ->withErrors($validator)
         ->withInput();
     }
-    
+
+   
     $payer = new Payer();
     $payer->setPaymentMethod('paypal');
   
     $item = new Item();
-    $item->setName('Amount to Add')// item name
+    $item->setName('1')// item name
       ->setCurrency('USD')
       ->setQuantity(1)
       ->setPrice($request->input('amount')); // unit price
@@ -90,13 +99,13 @@ class WalletController extends Controller
     
     $transaction = new Transaction();
     $transaction->setAmount($amount)
-      ->setItemList($item_list)
+        ->setItemList($item_list)
       ->setDescription('Amount to Add');
     
     $redirect_urls = new RedirectUrls();
     // Specify return & cancel URL
-    $redirect_urls->setReturnUrl(url('/payment/add-funds/paypal/status'))
-      ->setCancelUrl(url('/payment/add-funds/paypal/status'));
+    $redirect_urls->setReturnUrl(url('/payment/add-funds/paypal/status'.$id))
+      ->setCancelUrl(url('/payment/add-funds/paypal/status'.$id));
   
     $payment = new Payment();
     $payment->setIntent('Sale')
@@ -109,7 +118,7 @@ class WalletController extends Controller
     } catch (\PayPal\Exception\PayPalConnectionException $ex) {
       Session::flash('alert', 'Something Went wrong, funds could not be loaded');
       Session::flash('alertClass', 'danger no-auto-close');
-      return redirect('/client/wallet/show');
+      return redirect('/client/wallet/show'.$id);
     }
   
     foreach ($payment->getLinks() as $link) {
@@ -130,14 +139,14 @@ class WalletController extends Controller
   
     Session::flash('alert', 'Unknown error occurred');
     Session::flash('alertClass', 'danger no-auto-close');
-    return redirect('/client/wallet/show');
+    return redirect('/client/wallet/show'.$id);
   
     
     }
 
 
       // Paypal process payment after it is done
-  public function getPaymentStatus(Request $request)
+  public function getPaymentStatus(Request $request, $id)
   {
     // Get the payment ID before session clear
     $payment_id = Session::get('paypal_payment_id');
@@ -148,7 +157,7 @@ class WalletController extends Controller
     if (empty($request->input('PayerID')) || empty($request->input('token'))) {
       Session::flash('alert', 'Payment failed');
       Session::flash('alertClass', 'danger no-auto-close');
-      return redirect('/client/wallet/show');
+      return redirect('/client/wallet/show'.$id);
     }
 
     $payment = Payment::get($payment_id, $this->_api_context);
@@ -165,16 +174,35 @@ class WalletController extends Controller
 
     if ($result->getState() == 'approved') { // payment made
       // Payment is successful do your business logic here
-       dd($result->transactions[0]->amount->total);
+      //  dd($result);
+
+        $invoice = new Invoice;
+        $invoice->user_id = Auth::user()->id;
+        $invoice->project_id = $id;
+        $invoice->amount = $result->transactions[0]->amount->total;
+        $invoice->save();
+
+        $log = new log;
+        $log->user_id = Auth::user()->id;
+        $log->project_id = $id;
+        $log->status = "Success";
+        $log->save();
 
       Session::flash('alert', 'Funds Loaded Successfully!');
       Session::flash('alertClass', 'success');
-      return redirect('/client/wallet/show');
+      return redirect('/client/wallet/show'.$id);
     }
+
+        $log = new Log;
+        $log->user_id = Auth::user()->id;
+        $log->project_id = $id;
+        $log->status = "Error";
+        $log->save();
+
 
     Session::flash('alert', 'Unexpected error occurred & payment has been failed.');
     Session::flash('alertClass', 'danger no-auto-close');
-    return redirect('/client/wallet/show');
+    return redirect('/client/wallet/show'.$id);
   }
 
     /**
