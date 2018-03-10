@@ -67,6 +67,8 @@ Route::group(['middleware' => 'auth', 'middleware' => 'client' ], function() {
     Route::get('/client/project/order{id}',  'Client\ProjectController@loadorder');
 
     Route::get('/client/wallet/show', 'Client\WalletController@index');
+    Route::get('/payment/add-funds/paypal/status', 'Client\WalletController@getPaymentStatus');
+    Route::post('/payment/add-funds/paypal', 'Client\WalletController@store');
 });
 // WRITER GROUP
 Route::group(['middleware' => 'auth', 'middleware' => 'isVerified', 'middleware' => 'writer' ], function() {
