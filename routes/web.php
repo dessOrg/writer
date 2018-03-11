@@ -71,6 +71,7 @@ Route::group(['middleware' => 'auth', 'middleware' => 'client' ], function() {
     Route::post('/payment/add-funds/paypal', 'Client\WalletController@store');
     Route::get('/client/order/{status}', 'Client\OrderController@index');
     Route::get('/order/publish{id}', 'Client\OrderController@publish');
+    Route::get('/order/show{id}', 'Client\OrderController@show');
 
 });
 // WRITER GROUP

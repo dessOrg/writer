@@ -15,15 +15,15 @@ class OrderController extends Controller
   public function index($status)
   {
 
-       $orders = Project::where('status','=', $status)->where('user_id','=', Auth::user()->id)->get();
+       $orders = Project::where('status','=', $status)->where('user_id','=', Auth::user()->id)->orderBy('id', 'desc')->get();
        return view('client/orders/index', compact('orders'));
 
   }
 
-  public function show ()
+  public function show ($id)
   {
-    $orders = Project::get();
-    return view('client/orders/index', compact('orders'));
+    $project = Project::find($id);
+    return view('client/orders/show', compact('project'));
   }
 
   public function publish ($id)
@@ -42,5 +42,7 @@ class OrderController extends Controller
       return redirect('client/order/Bidding')->with('status', "Published Successfully. Ready for bidding");
       }
   }
+
+  
 
 }

@@ -36,7 +36,7 @@
 
      @endif
      
-     <span><a href="{{ url('client/order/view'.$key->id) }}"><button class="btn btn-default">View</a></span>
+     <span><a href="{{ url('/order/show'.$key->id) }}"><button class="btn btn-default">View</a></span>
      
     </div>
   </div>
