@@ -254,7 +254,7 @@
         <li class=""><a href="{{ url('writer/profile') }}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
         <li><a href="#"><i class="fa fa-star"></i><span>My Reviews</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>My Bids</span></a></li>
-        <li><a href="#"><i class="fa fa-book"></i> <span>Work In Progress</span></a></li>
+        <li><a href="{{ url('writer/open/orders') }}"><i class="fa fa-book"></i> <span>Open Orders</span></a></li>
         <li><a href="#"><i class="fa fa-certificate"></i> <span>Finished Projects</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
