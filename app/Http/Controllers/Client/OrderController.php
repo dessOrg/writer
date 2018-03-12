@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\User;
 use App\Project;
 use App\Profile;
+use App\Proposal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -43,6 +44,18 @@ class OrderController extends Controller
       }
   }
 
-  
+ public function profile ($id)
+ {
+     $user = User::find($id)->profile;
+     $skills = Profile::find($user->id)->skills()->get();
+     $profile = User::find($id);
 
+     return view('client/profile/index', compact('skills','profile'));
+ }  
+
+  public function proposal ($id)
+  {
+    $proposal = Proposal::find($id);
+    return view('client/orders/proposal', compact('proposal'));
+  }
 }

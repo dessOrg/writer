@@ -53,15 +53,17 @@
     
     </div>
     <div class="panel-body">
+    @if($project->proposals->count() > 0)
+     @foreach($project->proposals as $key )
      <div class="bid" style="background-color:gray;">
      <div class="col-md-5 col-xs-12">
-      <p>Name: <strong>Njuguna</strong></p>
-      <p>Profile Name: <strong>gwriter</strong></p>
+      <p>Name: <strong>{{ $key->user->fname }} {{ $key->user->lname }}</strong></p>
+      <p>Profile Name: <strong>{{ $key->user->username }}</strong></p>
       
      </div>
      <div class="col-md-4 col-xs-6">
       <p>Finished Orders: <strong>3</strong></p>
-      <p><a href="writer/profile">Visit Profile</a></p>
+      <p><a href="{{ url('writer/profile'.$key->user_id) }}">Visit Profile</a></p>
      </div>
      <div class="col-md-3 col-xs-6">
        <span><i class="fa fa-star"></i></span>
@@ -75,10 +77,19 @@
      </div>
 
      <div class="col-md-12 col-xs-12">
-       <p>Proposal comes here</p>
+     
+      <p>{{ str_limit($key->cover, $limit = 150, $end = '...') }}
+          <a href="{{ url('/order/proposal'.$key->id) }}">Read More</a>
+      </p>
 
      </div>
-</div>
+   </div>
+  @endforeach
+  @else
+      <div class="">
+       <h4>No Proposals Yet</h4>
+       </div>
+@endif
 
     </div>
     

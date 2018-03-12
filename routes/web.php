@@ -72,6 +72,8 @@ Route::group(['middleware' => 'auth', 'middleware' => 'client' ], function() {
     Route::get('/client/order/{status}', 'Client\OrderController@index');
     Route::get('/order/publish{id}', 'Client\OrderController@publish');
     Route::get('/order/show{id}', 'Client\OrderController@show');
+    Route::get('writer/profile{id}', 'Client\OrderController@profile');
+    Route::get('order/proposal{id}', 'Client\OrderController@proposal');
 
 });
 // WRITER GROUP
@@ -92,5 +94,5 @@ Route::group(['middleware' => 'auth', 'middleware' => 'isVerified', 'middleware'
     Route::get('writer/order{id}', 'Writer\OrderController@show');
     Route::post('writer/proposal', 'Writer\OrderController@bid');
     Route::get('writer/myproposals', 'Writer\OrderController@proposals');
-
+    
 });
