@@ -5,6 +5,12 @@
 <div class="">
   <div class="top" style="padding-left: 10vw;">
    <h3>Submit Proposal</h3>
+          @if(session()->has('status'))
+          <div class="alert alert-success">
+             {{ session()->get('status') }}
+          </div>
+         @endif
+ 
   </div>  
   <div class="" style="background-color: #fff;margin-left:10vw;margin-right:15vw;">
 
@@ -48,12 +54,7 @@
     <div class="orderbody">
       <div style="color:#000">
        <p>cover letter  </p>
-          @if(session()->has('success'))
-          <div class="alert alert-success">
-             {{ session()->get('success') }}
-          </div>
-         @endif
-         <form class="form-horizontal" role="form" method="POST" action="{{ url('writer/proposal') }}">
+        <form class="form-horizontal" role="form" method="POST" action="{{ url('writer/proposal') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('cover') ? ' has-error' : '' }}">

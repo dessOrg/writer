@@ -23,4 +23,14 @@ class Project extends Model
     {
       return $this->hasOne('App\Invoice');
     }
+
+    public function hires ()
+    {
+      return $this->hasMany('App\Hire');
+    }
+
+    public function proposals ()
+    {
+      return $this->hasMany('App\Proposal');
+    }
 }

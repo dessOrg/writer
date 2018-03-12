@@ -90,5 +90,7 @@ Route::group(['middleware' => 'auth', 'middleware' => 'isVerified', 'middleware'
     Route::get('writer/profile/removeskill{id}', 'Writer\ProfileController@removeskill');
     Route::get('writer/open/orders', 'Writer\OrderController@open');
     Route::get('writer/order{id}', 'Writer\OrderController@show');
+    Route::post('writer/proposal', 'Writer\OrderController@bid');
+    Route::get('writer/myproposals', 'Writer\OrderController@proposals');
 
 });
