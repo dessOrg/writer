@@ -43,6 +43,11 @@ class User extends Authenticatable
       return $this->hasMany('App\Proposal');
     }
 
+    public function messages()
+    {
+      return $this->hasMany(Message::class);
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

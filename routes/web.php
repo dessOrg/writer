@@ -23,6 +23,9 @@ Route::get('/form/{id}', function ($id) {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/ad/chat', 'ChatsController@index');
+Route::get('messages', 'ChatsController@fetchMessages');
+Route::post('messages', 'ChatsController@sendMessage');
 
 // ADMIN GROUP
 Route::group(['middleware' => 'auth', 'middleware' => 'isVerified', 'middleware' => 'admin' ], function() {

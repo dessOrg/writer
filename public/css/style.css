@@ -1,0 +1,50 @@
+body {
+   overflow-x:hidden;
+}
+
+.welcome {
+   background-image : url('/images/welcome.jpg');
+   background-size : cover;
+   background-color: #546582;
+   margin-top: -20px;
+   margin-left: -10px;
+   margin-right: -10px;
+   height: 80vh;
+   color: #fff;
+}
+
+.separator_wrapper::before {
+    background-color: #34b1c4;
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    width: 60px;
+    height: 1px;
+    margin-top: -6px;
+}
+
+.separator_wrapper::after {
+    background-color: #34b1c4;
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    width: 60px;
+    height: 1px;
+    margin-top: -6px;
+}
+
+.star {
+   coror : #34b1c4;
+}
+
+.services {
+   height:90vh;
+   background-color: #fff;
+   padding:10px;
+}
+
+.howitworks {
+   height:90vh;
+   background-color: #eff0f0;
+   padding:10px;
+}
