@@ -24,7 +24,7 @@ class WelcomeController extends Controller
        $rates = Rate::where('category','=',$category)->where('level','=',$level)->where('timeline','=',$timeline)->get();
        $resp = $this->getrates($rates, $pages);
        $rate_id = $this->getid($rates);
-       return response()->json(['cost' => $resp, 'pages' => $pages, 'rate_id' => $rate_id]);
+       return response()->json(['category' => $request->category, 'cost' => $resp, 'pages' => $pages, 'rate_id' => $rate_id]);
  
     }
 

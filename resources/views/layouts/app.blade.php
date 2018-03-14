@@ -55,7 +55,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
 
@@ -69,7 +69,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        Versatile
                     </a>
                 </div>
 
@@ -81,31 +81,27 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
+                        <li><a href="#howitworks">How It Works</a></li> 
+                          <li><a href="#whyus">Why Us</a></li>
+                           <li><a href="#contact">Contacts</a></li>                  
+    <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}"><span class="btn btn-warning">Signin</span></a></li>
+                            
                             @else
                                  <li><a href="{{ url('ad/chat') }}">Chat</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
+                               <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                           <span class="btn btn-warning"> Logout</span>
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                </ul>
-                            </li>
+                            
                         @endguest
                     </ul>
                 </div>
@@ -184,6 +180,26 @@ $(document).ready(function() {
     });
 
 
+});
+// handle links with @href started with '#' only
+$(document).on('click', 'a[href^="#"]', function(e) {
+    // target element id
+    var id = $(this).attr('href');
+
+    // target element
+    var $id = $(id);
+    if ($id.length === 0) {
+        return;
+    }
+
+    // prevent standard hash navigation (avoid blinking in IE)
+    e.preventDefault();
+
+    // top position relative to the document
+    var pos = $id.offset().top;
+
+    // animated top scrolling
+    $('body, html').animate({scrollTop: pos});
 });
 </script>
 

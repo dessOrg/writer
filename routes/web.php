@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::post('/', 'WelcomeController@index');
-Route::post('/sendform', 'WelcomeController@store');
 Route::get('/form/{id}', function ($id) {
      return redirect('client/project/create{id}');
 });
@@ -62,11 +61,13 @@ Route::group(['middleware' => 'auth', 'middleware' => 'client' ], function() {
         return view('client.dashboard') ;
     }) ;
 
-    Route::get('client/project/create{id}', 'Client\ProjectController@create');
+    Route::get('client/order/create', 'Client\ProjectController@create');
     Route::post('/sendcalc', 'Client\ProjectController@store');
+    Route::post('/sendform', 'Client\ProjectController@save');
     Route::post('/client/project/middle', 'Client\ProjectController@update');
     Route::post('/client/project/finnal', 'Client\ProjectController@finnal');
     Route::post('/client/project/docupload', 'Client\ProjectController@docupload');
+    Route::post('/client/proceed', 'Client\ProjectController@proceed');
     Route::get('/client/project/order{id}',  'Client\ProjectController@loadorder');
 
     Route::get('/client/wallet/show{id}', 'Client\WalletController@index');

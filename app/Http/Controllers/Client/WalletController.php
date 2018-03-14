@@ -71,7 +71,7 @@ class WalletController extends Controller
         'amount' => 'required|numeric'
     ]);
        
-        $id = "1";
+        $id = $request->get('project_id');
 
     if ($validator->fails()) {
       return redirect('client/wallet/show'.$id)
@@ -190,7 +190,7 @@ class WalletController extends Controller
 
       Session::flash('alert', 'Funds Loaded Successfully!');
       Session::flash('alertClass', 'success');
-      return redirect('/client/wallet/show'.$id);
+      return redirect('/order/show'.$id);
     }
 
         $log = new Log;

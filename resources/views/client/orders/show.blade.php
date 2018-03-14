@@ -8,6 +8,29 @@
    <div class="col-md-offset-1 col-md-10 col-xs-12">
 <div class="orderscontainer" styl="margin-top:20px;">
 
+<div class="alert alert-success">
+
+    {{ Session::get('alert') }}
+
+    @php
+
+    Session::forget('alert');
+
+    @endphp
+
+</div>
+
+@endif
+                     @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    @if (session('warning'))
+                        <div class="alert alert-warning">
+                            {{ session('warning') }}
+                        </div>
+                    @endif  
 
   <div class="panel panel-default">
     <div class="panel-heading">

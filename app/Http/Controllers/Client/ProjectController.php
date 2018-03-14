@@ -10,6 +10,7 @@ use App\Topic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use Validator;
 
 class ProjectController extends Controller
 {
@@ -28,12 +29,52 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
    {
+      
        $topics = Topic::get();
-       $project = Project::find($id);
-        return view('client/projects/create', compact('project','topics'));
+       $rate = Rate::first();
+       
+        return view('client/projects/create', compact('topics','rate'));
     }
+
+    public function save(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'rate_id' => 'required'            
+     ]);
+
+    if ($validator->fails()) {
+    return response()->json(["errors"=>$validator->errors()->all()]);
+    }
+ 
+       
+        if($request->project_id == '0'){
+        $project = new Project;
+        $project->pages = $request->pages;
+        $project->rate_id = $request->rate_id;
+        $project->cost = $request->cost;
+        $project->user_id = Auth::user()->id;
+        $project->title = "0";
+        $project->topic = "0";
+        $project->description = "0";
+        $project->file = "0";
+        $project->video = "0";
+        $project->dateline = "0";
+        $project->save();
+
+        return response()->json($project);
+        }else {
+         $project_obj = new Project;
+         $project_obj->id = $request->project_id;
+         $project = Project::find($project_obj->id);
+         $project->update(['pages'=>$request->pages, 'rate_id'=>$request->rate_id]);
+
+         return response()->json($project);
+
+        }
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -44,9 +85,9 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'pages' => 'required|max:255',
-            'cost' => 'required|max:255',
-            'rate_id' => 'required|max:255',
+            'title' => 'required|max:255',
+            'description' => 'required|max:255',
+            
      ]);
 
     if ($validator->fails()) {
@@ -119,6 +160,16 @@ class ProjectController extends Controller
      */
     public function update(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|max:255',
+            'description' => 'required',
+            
+     ]);
+
+    if ($validator->fails()) {
+        return response()->json(['errors'=>$validator->errors()->all()]);
+    }
+ 
         $project_obj = new Project;
         $project_obj->id = $request->project_id;
         $project = Project::find($project_obj->id);
@@ -159,6 +210,15 @@ class ProjectController extends Controller
          $project->update(['file' => $pat, 'user_id' => Auth::user()->id]);
         return response()->json($project);
     }
+
+    public function proceed(Request $request)
+    {
+         
+         $project = Project::find($request->project_id);
+     
+            return response()->json($project);
+    }
+
 
 
     public function loadorder($id)

@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  
 <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -92,7 +93,7 @@
                         <small><i class="fa fa-clock-o"></i> 5 mins</small>
                       </h4>
                       <!-- The message -->
-                      <p>Why not reuest an order right now?</p>
+                      <p>Why not request an order right now?</p>
                     </a>
                   </li>
                   <!-- end message -->
@@ -261,7 +262,7 @@
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="/client"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li class=""><a href="#"><i class="fa fa-users"></i> <span>Writers Ratings</span></a></li>
-        <li><a href="{{ url('client/project/create') }}"><i class="fa fa-link"></i> <span>Project</span></a></li>
+        <li><a href="{{ url('client/order/create') }}"><i class="fa fa-link"></i> <span>Make An Order</span></a></li>
         <li><a href="{{ url('admin/topics') }}"><i class="fa fa-book"></i> <span>Topics</span></a></li>
         <li><a href="{{ url('admin/skills') }}"><i class="fa fa-certificate"></i> <span>Skills</span></a></li>
         <li class="treeview">
@@ -410,56 +411,28 @@
     <!-- Delay table load until everything else is loaded -->
 <script>
 $(document).ready(function() {
-    $('#projectmiddle').click(function (e) {
+    $('.calc').click(function (e) {
         e.preventDefault();
 //        $('#def').hide();
-        var title = $('#title').val();
-        var topic = $('#topic').val();
-        var description = $('#description').val();
-        var project_id = $('#project_id_m').val();
-//        var video = $('#video').val();
-        console.log(project_id);
-        
+        var category = $('#category').val();
+        var level = $('#level').val();
+        var timeline = $('#timeline').val();
+        var pages = $('#pages').val();
+       console.log(pages); 
         $.ajax({
             dataType: 'json',
             type: "POST",
-            url: '/client/project/middle',
-            data: {_token: '{{ csrf_token() }}',project_id: project_id,title: title, topic: topic, description: description},
+            url: '/',
+            data: {_token: '{{ csrf_token() }}',category: category, level: level,timeline: timeline,pages: pages},
             success: function( response ) {
-               
-               $("#title").val(response.title);
-               $("#topic").val(response.topic);
-               $("#description").val(response.description); 
-               $("#video").val(response.video);
-               console.log(response);
-                          },
-            error: function() {
-                console.log("erro");
-            }
-        });
-    });
-
-
-    $('#projectfinnal').click(function (e) {
-        e.preventDefault();
-//        $('#def').hide();
-        
-        var video = $('#video').val();
-        var project_id = $('#project_id_f').val();
-        console.log(project_id);
-        
-        $.ajax({
-            dataType: 'json',
-            type: "POST",
-            url: '/client/project/finnal',
-            data: {_token: '{{ csrf_token() }}',video: video,project_id: project_id},
-            success: function( response ) {
-            
-               $("#title").val(response.title);
-               $("#topic").val(response.topic);
-               $("#description").val(response.description); 
-               $("#video").val(response.video);
-                console.log(response);
+               $("#ajaxResponse").html('$,'+ response.cost +'.00');
+               console.log(response.category);
+               $("#category").val(response.category);
+               $("#total").val(response.cost);
+               $("#page").val(response.pages);
+               $("#rate_id").val(response.rate_id); 
+                  $(".total").html(response.cost);
+               $(".pages").html(response.pages);              console.log(response);
             },
             error: function() {
                 console.log("erro");
@@ -467,8 +440,172 @@ $(document).ready(function() {
         });
     });
 
+    $('#sendform').click(function (e) {
+        e.preventDefault();
+//        $('#def').hide();
+        var category = $('#category').val();
+        var level = $('#level').val();
+        var timeline = $('#timeline').val();
+        var pages = $('#pages').val();
+//        var pages = $('#page').val();
+        var cost = $('#total').val();
+        var rate_id = $('#rate_id').val();
+        var project_id = $('#project_id').val();
+    
+       console.log(pages); 
+        $.ajax({
+            dataType: 'json',
+            type: "POST",
+            url: '/sendform',
+            data: {_token: '{{ csrf_token() }}',pages: pages, cost: cost,rate_id: rate_id,project_id: project_id},
+            success: function( response ) {
+              // $("#ajaxResponse").html('$,'+ response +'.00');
+              console.log(response);
+               if(response.errors){
+                   $('.error').removeClass('hidden');
+                   $('.error').text("Category Is Required");
+                  // $('.error').text(errors);
+               }else{
+                 $("#ajaxResponse").html('$'+ response.cost +'.00');
+                console.log("HEre");
+               $("#total").val(response.cost);
+               $("#page").val(response.pages);
+               $("#rate_id").val(response.rate_id); 
+               $("#project_id").val(response.id);   
+                  
+                 $(".total").html(response.cost);
+               $(".pages").html(response.pages);
+               $(".error").hide();
+               $('.form2').show();
+               $('.form1').hide();
+               }
+            },
+            error: function(data) {
+                console.log(data);  
+                var errors = '';
+                for(datos in data.responseJSON){
+                    errors += data.responseJSON[datos] + '<br>';
+                }
+                console.log(errors);
+           $('.error').removeClass('hidden');
+           $('.error').text(errors);
+           $('.error').text(errors);
+            }
+       });
+          
+    });
 
-$("#docupload").click(function(e) {
+
+
+    $('#projectmiddle').click(function (e) {
+        e.preventDefault();
+//        $('#def').hide();
+        var title = $('#title').val();
+        var topic = $('#topic').val();
+        var description = $('#description').val();
+        var project_id = $('#project_id').val();
+//        var video = $('#video').val();
+        console.log(title);
+       console.log("oooo"); 
+        $.ajax({
+            dataType: 'json',
+            type: "POST",
+            url: '/client/project/middle',
+            data: {_token: '{{ csrf_token() }}',project_id: project_id,title: title, topic: topic, description: description},
+            success: function( response ) {
+
+                if(response.errors){
+                    $('.error2').removeClass('hidden');
+                     $('.error2').text("The Title And Instructions Fields Are Required");
+                    
+                  // $('.error').text(errors);
+                  console.log(response.errors);
+                }else{
+               $("#title").val(response.title);
+               $("#topic").val(response.topic);
+               $("#description").val(response.description);
+               $(".total").html(response.cost);
+               $(".pages").html(response.pages); 
+               $("#video").val(response.video);
+              console.log(response);
+               $(".error2").hide();
+               $('.final').show();
+               $('.form2').hide();
+                }
+                          },
+               error: function(data) {
+                  $('.error').removeClass('hidden');
+                  $('.error').text(data.errors.title);
+                  $('.error').text(data.errors.description);
+                  console.log(data);
+            }
+        });
+    });
+
+
+    $('.order').click(function (e) {
+        e.preventDefault();
+//        $('#def').hide();
+        
+        //var video = $('#video').val();
+        var project_id = $('#project_id').val();
+        console.log(project_id);
+        
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: '/client/proceed',
+            data: {_token: '{{ csrf_token() }}',project_id: project_id},
+            success: function( response ) {
+
+                window.location.href = '/client/wallet/show'+response.id;
+               $('#title').val(response.title);
+               $('#topic').val(response.topic);
+               $('#description').val(response.description); 
+                $('.total').html(response.cost);
+               $('.pages').html(response.pages); 
+               $('#video').val(response.video);
+                console.log(response);
+            },
+            error: function() {
+                console.log('erro');
+            }
+        });
+    });
+
+
+
+    $('#projectfinnal').click(function (e) {
+        e.preventDefault();
+//        $('#def').hide();
+        
+        var video = $('#video').val();
+        var project_id = $('#project_id').val();
+        console.log(project_id);
+        
+        $.ajax({
+            dataType: 'json',
+            type: 'POST',
+            url: '/client/project/finnal',
+            data: {_token: '{{ csrf_token() }}',video: video,project_id: project_id},
+            success: function( response ) {
+            
+               $('#title').val(response.title);
+               $('#topic').val(response.topic);
+               $('#description').val(response.description); 
+                $('.total').html(response.cost);
+               $('.pages').html(response.pages); 
+               $('#video').val(response.video);
+                console.log(response);
+            },
+            error: function() {
+                console.log('erro');
+            }
+        });
+    });
+
+
+$('#docupload').click(function(e) {
     e.preventDefault();
     var extension = $('#document').val().split('.').pop().toLowerCase();
     console.log(extension);
@@ -478,7 +615,7 @@ $("#docupload").click(function(e) {
     } else {
 
         var file_data = $('#document').prop('files')[0];
-        var project_id = $('#project_id_f').val();
+        var project_id = $('#project_id').val();
 
         var form_data = new FormData();
         form_data.append('_token', '{{ csrf_token() }}');
@@ -494,16 +631,20 @@ $("#docupload").click(function(e) {
             processData: false,
             success: function(response) {
  
-               $("#title").val(response.title);
-               $("#topic").val(response.topic);
-               $("#description").val(response.description); 
-               $("#video").val(response.video);
-                console.log(response.file );
-               $("#docpreview").html("<a href='/"+response.file+"' target="+"'_blank'>View Doc</a>");
+               $('#title').val(response.title);
+               $('#topic').val(response.topic);
+               $('#description').val(response.description); 
+               $('#video').val(response.video);
+               console.log(response.file );
+               var l = $('<a/>');
+               l.attr('href', "/"+response.document);
+               l.attr('target', '_blank');
+               l.text("Doc");
+               $('#docpreview').html(l);
 
             },
            error: function(response) {
-                console.log("Error:", response);
+                console.log('Error:', response);
             }
         });
     }

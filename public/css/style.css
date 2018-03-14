@@ -1,12 +1,38 @@
 body {
    overflow-x:hidden;
+   padding-top: 65px;
+}
+
+.navbar {
+  min-height: 80px;
+}
+
+.navbar-brand {
+  padding: 0 15px;
+  height: 80px;
+  line-height: 80px;
+}
+
+.navbar-toggle {
+  /* (80px - button height 34px) / 2 = 23px */
+  margin-top: 23px;
+  padding: 9px 10px !important;
+}
+
+@media (min-width: 768px) {
+  .navbar-nav > li > a {
+    /* (80px - line-height of 27px) / 2 = 26.5px */
+    padding-top: 26.5px;
+    padding-bottom: 26.5px;
+    line-height: 27px;
+  }
 }
 
 .welcome {
    background-image : url('/images/welcome.jpg');
    background-size : cover;
    background-color: #546582;
-   margin-top: -20px;
+   margin-top: 1px;
    margin-left: -10px;
    margin-right: -10px;
    height: 80vh;
@@ -34,7 +60,7 @@ body {
 }
 
 .star {
-   coror : #34b1c4;
+   coror : green;
 }
 
 .services {
@@ -43,8 +69,80 @@ body {
    padding:10px;
 }
 
+.how-content {
+  margin-top: 20px;
+}
+
 .howitworks {
    height:90vh;
-   background-color: #eff0f0;
-   padding:10px;
+   background-color: #635827;
+   padding-top: 100px;
+}
+
+.how-header {
+   color: #77859b;
+}
+
+.how-inside {
+   background-color: #fff;
+   padding: 10px;
+   height: 45vh;
+}
+
+.how-inside h3 {
+  color: #77859b;
+}
+
+.how-img {
+   margin: 20px;
+}
+
+.how-img img {
+  height: 100px;
+   
+}
+
+.how-desc {
+  margin: 20px;
+}
+
+.how-btn {
+   margin: 20px;
+   padding: 20px;
+}
+
+.whyus {
+  padding-bottom:20px;
+  padding-top: 100px;
+}
+
+.whybody {
+  
+}
+
+.why-cont h3 {
+  color: #77859b;
+}
+
+.why-img img{
+  height: 10vh;
+}
+
+.why-img {
+  padding-top: 5vh;
+}
+
+.whystrip {
+  height: 20vh;
+}
+
+.write {
+  height: 35vh;
+  background-image: url('/images/write.jpeg');
+  background-size: cover;
+}
+
+.contact {
+   padding: 10px;
+   background-color: #0f0e0b;
 }
