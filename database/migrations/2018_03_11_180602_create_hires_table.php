@@ -17,7 +17,7 @@ class CreateHiresTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('project_id');
-            $table->string('dateline');
+            $table->datetime('dateline');
             $table->string('status');
             $table->timestamps();
         });

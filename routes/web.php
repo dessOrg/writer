@@ -79,6 +79,9 @@ Route::group(['middleware' => 'auth', 'middleware' => 'client' ], function() {
     Route::get('writer/profile{id}', 'Client\OrderController@profile');
     Route::get('order/proposal{id}', 'Client\OrderController@proposal');
 
+    Route::get('client/hire{id}', 'Client\OrderController@hire');
+    Route::post('client/hire', 'Client\OrderController@store');
+
 });
 // WRITER GROUP
 Route::group(['middleware' => 'auth', 'middleware' => 'isVerified', 'middleware' => 'writer' ], function() {

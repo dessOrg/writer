@@ -17,7 +17,7 @@
 <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- Theme style -->
+ <!-- Theme style -->
   <link rel="stylesheet" href="/adminlte/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
@@ -407,9 +407,22 @@
 <!-- AdminLTE App -->
 <script src="/adminlte/js/app.min.js"></script>
 <script src="/adminlte/js/custom.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>  
     <!-- Delay table load until everything else is loaded -->
 <script>
+
+$(function () {
+    $('#datetimepicker1').datetimepicker({
+           pickDate: true,
+        pickSeconds: false,
+        pick12HourFormat: false 
+});
+ });
+
 $(document).ready(function() {
     $('.calc').click(function (e) {
         e.preventDefault();

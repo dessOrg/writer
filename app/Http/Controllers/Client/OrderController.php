@@ -6,9 +6,12 @@ use App\User;
 use App\Project;
 use App\Profile;
 use App\Proposal;
+use App\Hire;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use Carbon\Carbon;
+use DateTime;
 
 class OrderController extends Controller
 {
@@ -58,4 +61,31 @@ class OrderController extends Controller
     $proposal = Proposal::find($id);
     return view('client/orders/proposal', compact('proposal'));
   }
+
+  public function hire ($id)
+  {
+    $proposal = Proposal::find($id);
+    return view('client/orders/hire', compact('proposal'));
+  }
+
+  public function store (Request $request)
+  {
+    $hire = new Hire;
+    $hire->user_id = $request->get('user_id');
+    
+    $hire->project_id = $request->get('project_id');
+  //   $dateline = Carbon::parse($request->get('dateline'))->format('Y-d-m H:i');
+    $dateline =  date('Y-m-d H:i:s', strtotime($request->get('dateline')));
+    $hire->dateline = $dateline;
+    $hire->status = "Active";
+    $hire->save();
+
+    $project_obj = new Project;
+    $project_obj->id = $request->get('project_id');
+    $project = Project::find($project_obj->id);
+    $project->update(['status' => "Inprogress"]);
+
+    return redirect('/client/order/Inprogress');
+  }
+
 }

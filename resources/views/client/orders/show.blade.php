@@ -8,6 +8,7 @@
    <div class="col-md-offset-1 col-md-10 col-xs-12">
 <div class="orderscontainer" styl="margin-top:20px;">
 
+@if(session('success'))
 <div class="alert alert-success">
 
     {{ Session::get('alert') }}
@@ -95,7 +96,7 @@
        <span><i class="fa fa-star"></i></span>
        <span><i class="fa fa-star"></i></span>
        <div>
-       <button class="btn btn-warning">Hire</button>
+       <span> <a href="{{ url('/client/hire'.$key->id) }}"><span class="btn btn-warning">Hire</span></a></span>
        </div>
      </div>
 

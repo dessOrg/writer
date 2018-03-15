@@ -36,7 +36,7 @@
        <span><i class="fa fa-star"></i></span>
        <div>
        <span><a href="{{ url('/ad/chat'.Auth::user()->id) }}"><span class="btn btn-info">Contact</span></a></span>
-       <span class="btn btn-warning">Hire</span>
+       <span><a href="{{ url('/client/hire'.$proposal->id) }}"><span class="btn btn-warning">Hire</span></a></span>
        </div>
      </div>
 
