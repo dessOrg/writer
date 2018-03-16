@@ -75,7 +75,9 @@ Route::group(['middleware' => 'auth', 'middleware' => 'client' ], function() {
     Route::post('/payment/add-funds/paypal', 'Client\WalletController@store');
     Route::get('/client/order/{status}', 'Client\OrderController@index');
     Route::get('/order/publish{id}', 'Client\OrderController@publish');
-    Route::get('/order/show{id}', 'Client\OrderController@show');
+    Route::get('/order/cancel{id}', 'Client\OrderController@cancel');
+     Route::get('/order/show{id}', 'Client\OrderController@show');
+    Route::get('/order/destroy{id}', 'Client\OrderController@destroy');
     Route::get('writer/profile{id}', 'Client\OrderController@profile');
     Route::get('order/proposal{id}', 'Client\OrderController@proposal');
 

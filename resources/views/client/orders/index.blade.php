@@ -7,6 +7,18 @@ https://www.linkedin.com/in/kipngetich-korir-0b7592106/
  <div class="row">
    <div class="col-md-offset-1 col-md-10 col-xs-12">
 <div class="orderscontainer" styl="margin-top:20px;">
+                     @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    @if (session('warning'))
+                        <div class="alert alert-warning">
+                            {{ session('warning') }}
+                        </div>
+                    @endif  
+
+
  @if($orders->count() > 0 )
  @foreach($orders as $key)
   <div class="panel panel-default">
@@ -32,6 +44,7 @@ https://www.linkedin.com/in/kipngetich-korir-0b7592106/
     <div class="panel-footer text-center">
       @if($key->status == "Unpublished")
         @if(is_null($key->invoice))
+       <span><a href="{{ url('order/destroy'.$key->id) }}"><span class="btn btn-danger"><i class="fa fa-remove">Delete</i></span></a></span>
       <span><a href="{{ url('client/wallet/show'.$key->id) }}"><span class="btn btn-success">Order</span></a></span>
         @else
       <span><a href="{{ url('order/publish'.$key->id) }}"><span class="btn btn-success">Publish</span></a></span>

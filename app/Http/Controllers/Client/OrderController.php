@@ -88,4 +88,32 @@ class OrderController extends Controller
     return redirect('/client/order/Inprogress');
   }
 
+  public function cancel ($id)
+  {
+
+      $order_obj = new Project;
+      $order_obj->id = $id;
+      $order = Project::find($order_obj->id);
+      $order->update(['status'=>"Cancelled"]);
+
+      if($order->hires->count() > 0){
+          $hire = Hire::where('status','=','Active')->where('project_id','=', $id)->first();
+         
+          $hire_obj = new Hire;
+          $hire_obj->id = $hire->id;
+          $hir = Hire::find($hire_obj->id);
+          $hir->update(['status'=> 'Cancelled']);
+      }
+
+      return redirect('/order/show'.$id)->with('status', 'Order Cancelled');
+
+  }
+
+ public function destroy ($id)
+ {
+    $order = Project::find($id);
+    $order->delete();
+    return redirect('client/order/Unpublished')->with('status', 'Deleted Successfully');
+ }
+
 }

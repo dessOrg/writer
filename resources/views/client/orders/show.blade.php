@@ -59,9 +59,12 @@
        @endif
 
      @endif
-     
-     <span><a href="{{ url('/order/cancel'.$project->id) }}"><button class="btn btn-warning">Cancel</a></span>
-     
+     @if($project->status == "Cancelled")
+     <span><a href="{{ url('/order/publish'.$project->id) }}"><button class="btn btn-success">Reopen </a></span>
+     @else
+  <span><a href="{{ url('/order/cancel'.$project->id) }}"><button class="btn btn-warning">Cancel</a></span>
+ 
+         @endif
     </div>
   </div>
   
@@ -70,6 +73,48 @@
 <hr>
 <div class="bidscontainer" style="margin-top:20px;">
 
+  <div class="panel panel-default">
+    <div class="panel-heading">
+    <span>Writer Assigned To This Order</span>
+    
+    </div>
+    <div class="panel-body">
+    
+     @foreach($project->hires as $key )
+     <div class="bid" style="background-color:gray;">
+     <div class="col-md-5 col-xs-12">
+      <p>Name: <strong>{{ $key->user->fname }} {{ $key->user->lname }}</strong></p>
+      <p>Profile Name: <strong>{{ $key->user->username }}</strong></p>
+      <p>Work Status:
+          @if($key->status == "Cancelled")
+            <strong style="color:red">{{ $key->status }}</strong>
+          @else
+            <strong style="color:green">{{ $key->status }}</strong>
+          @endif
+       </p>
+     </div>
+     <div class="col-md-4 col-xs-6">
+      <p>Finished Orders: <strong>3</strong></p>
+      <p><a href="{{ url('writer/profile'.$key->user_id) }}">Visit Profile</a></p>
+     </div>
+     <div class="col-md-3 col-xs-6">
+       <span><i class="fa fa-star"></i></span>
+       <span><i class="fa fa-star"></i></span>
+       <span><i class="fa fa-star"></i></span>
+       <span><i class="fa fa-star"></i></span>
+       <span><i class="fa fa-star"></i></span>
+       <div>
+       <span> <a href="{{ url('/client/writer/rate'.$key->id) }}"><span class="btn btn-info">Rate Writer</span></a></span>
+       </div>
+     </div>
+
+   </div>
+  @endforeach
+  
+    </div>
+    
+  </div>
+  
 
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -118,7 +163,6 @@
     </div>
     
   </div>
-  
 
 </div>
 </div>
