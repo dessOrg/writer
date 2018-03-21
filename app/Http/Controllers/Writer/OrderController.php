@@ -63,4 +63,11 @@ class OrderController extends Controller
         $proposals = Proposal::where('user_id','=', Auth::user()->id)->get();
         return view('writer/orders/proposals', compact('proposals'));
     }
+
+    public function proposal ($id)
+    {
+        $proposal = Proposal::find($id);
+        return view('writer/orders/proposal', compact('proposal'));
+    }
+
 }
