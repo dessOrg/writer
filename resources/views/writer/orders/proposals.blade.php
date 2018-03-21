@@ -35,6 +35,7 @@
    </div>
 
    @foreach($proposals as $key)
+    @if($key->project->status != "Bidding")
    <div class="order" style="border-bottom: ridge;border-color:#e8eaf6;padding:10px;">
     <div class="orderhead">
       <h3><a href="{{ url('writer/proposal'.$key->id) }}"> {{ $key->project->title }}</a></h3>
@@ -45,6 +46,7 @@
     </div>
     
    </div>
+   @endif
   @endforeach
 
   </div>
