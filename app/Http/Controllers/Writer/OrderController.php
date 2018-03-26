@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Writer;
 use App\Project;
 use App\User;
 use App\Proposal;
+use App\Hire;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -68,6 +69,11 @@ class OrderController extends Controller
     {
         $proposal = Proposal::find($id);
         return view('writer/orders/proposal', compact('proposal'));
+    }
+
+    public function activeorders () {
+        $hires = Hire::where('user_id','=',Auth::user()->id)->where('status','=','Active')->get();
+        return view('writer/orders/active', compact('hires'));
     }
 
 }

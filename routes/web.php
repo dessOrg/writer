@@ -104,5 +104,6 @@ Route::group(['middleware' => 'auth', 'middleware' => 'isVerified', 'middleware'
     Route::post('writer/proposal', 'Writer\OrderController@bid');
     Route::get('writer/proposal{id}', 'Writer\OrderController@proposal');
     Route::get('writer/myproposals', 'Writer\OrderController@proposals');
+    Route::get('writer/activeorders', 'Writer\OrderController@activeorders');
     
 });
